@@ -23,7 +23,7 @@ export default function Navbar() {
   ];
   const isActives = pathname.endsWith("/login");
   return (
-    <div className="flex rounded-xl bg-[#4945C4] h-20 md:h-26 w-[96%] fixed z-50 top-[2%] mx-[2%]">
+    <div className="flex rounded-xl bg-[#4945C4] h-20 md:h-24 w-[96%] fixed z-50 top-[2%] mx-[2%]">
       <div className="flex p-8 items-center w-full justify-between">
         <div className="Logo font-bold text-xl text-background">Quire</div>
         <div className="Navigation">
