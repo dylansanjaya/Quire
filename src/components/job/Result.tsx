@@ -171,14 +171,14 @@ function JobCard({
   );
 }
 
-function JobCards({ jobClickedID }: any) {
+function JobCards({ params, jobClickedID }: any) {
   const totalJobs = jobs.length;
   return (
     <div className="space-y-4">
       <div>{totalJobs} Lowongan</div>
       <div className="space-y-4">
         {jobs.map((job) => (
-          <Link href={`/jobs/?job_id=${job.id}`} key={job.id} scroll={false}>
+          <Link href={`/jobs/${params}?job_id=${job.id}`} key={job.id} scroll={false}>
             <JobCard
               image_url={job.image_url}
               title={job.title}
@@ -249,13 +249,11 @@ function JobDetail({ id }: any) {
 }
 
 export default function Result({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+  params, searchParams
+}: any) {
   return (
     <div className="flex space-x-4">
-      <JobCards jobClickedID={searchParams} />
+      <JobCards params={params} jobClickedID={searchParams} />
       <JobDetail id={searchParams} />
     </div>
   );
