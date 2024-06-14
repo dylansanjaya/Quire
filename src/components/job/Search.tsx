@@ -21,7 +21,7 @@ export default function SearchBox() {
               <div className="flex space-x-3">
                 <Input />
                 <Input />
-                <Button>Filter</Button>
+                <Button variant={'outline'}>Filter</Button>
                 <Button>Cari</Button>
               </div>
             </TabsContent>

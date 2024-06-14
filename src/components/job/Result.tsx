@@ -133,7 +133,6 @@ function JobCard({
   isSaved,
   jobClickedID,
 }: any) {
-
   let isClicked = false;
   if (jobID == jobClickedID) {
     isClicked = true;
@@ -179,7 +178,7 @@ function JobCards({ jobClickedID }: any) {
       <div>{totalJobs} Lowongan</div>
       <div className="space-y-4">
         {jobs.map((job) => (
-          <Link href={`/jobs/?job_id=${job.id}`} key={job.id}>
+          <Link href={`/jobs/?job_id=${job.id}`} key={job.id} scroll={false}>
             <JobCard
               image_url={job.image_url}
               title={job.title}
@@ -220,7 +219,8 @@ function JobDetail({ id }: any) {
   }
   return (
     <div className="bg=background rounded-xl shadow-xl w-full">
-      <div className="p-8 space-y-4">
+      <div className="grid p-8 space-y-4">
+        <div className="justify-self-end">test</div>
         <div className="Image">
           <div className="bg-background shadow-xl rounded-xl w-32 aspect-square">
             {job.image_url}
