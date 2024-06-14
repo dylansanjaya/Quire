@@ -1,15 +1,22 @@
+'use client'
+
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "./../ui/input";
 import { Button } from "./../ui/button";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function SearchBox() {
+  const router = useRouter();
+  const pathname = usePathname();
   return (
     <div className="rounded-xl shadow-xl bg-white">
       <div className="p-8 py-12">
         <div className="Header">
           <Tabs defaultValue="normal" className="w-full">
-            <div className="flex justify-between items-center   ">
-              <div>Back</div>
+            <div className="flex justify-between items-center">
+              <Link href={"/jobs"}>Back</Link>
               <TabsList>
                 <TabsTrigger value="normal">Nromal Search</TabsTrigger>
                 <TabsTrigger value="story">Job Story Tell</TabsTrigger>
@@ -21,15 +28,19 @@ export default function SearchBox() {
               <div className="flex space-x-3">
                 <Input />
                 <Input />
-                <Button>Filter</Button>
-                <Button>Cari</Button>
+                <Button variant={"outline"}>Filter</Button>
+                <Button type="button" onClick={() => router.push(`/jobs/Frontend`)}>
+                  Cari
+                </Button>
               </div>
             </TabsContent>
             <TabsContent value="story">
               <h2>Job Story Tell</h2>
               <div className="flex space-x-3">
                 <Input />
-                <Button>Cari</Button>
+                <Button type="button" onClick={() => router.push(`/jobs/Frontend`)}>
+                  Cari
+                </Button>
               </div>
             </TabsContent>
             <TabsContent value="cv">
@@ -40,7 +51,9 @@ export default function SearchBox() {
                     <Input className="self-center" id="picture" type="file" />
                   </div>
                 </div>
-                <Button>Cari</Button>
+                <Button type="button" onClick={() => router.push(`/jobs/Frontend`)}>
+                  Cari
+                </Button>
               </div>
             </TabsContent>
           </Tabs>
@@ -49,4 +62,3 @@ export default function SearchBox() {
     </div>
   );
 }
-
