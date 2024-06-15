@@ -1,14 +1,19 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { SmallButton } from "../ui/small_button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "../ui/input";
 import CourseCards from "../skill-up/Courses";
 import ChatBot from "./Chat";
+import Image from "next/image";
+import defaultImage from "P/assets/img/logo.png";
+import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const jobs = [
   {
     id: 1,
-    image_url: "image1.jpg",
+    image_url: "default",
     title: "Software Engineer",
     poster: "Google LLC",
     source: "Indeed",
@@ -18,7 +23,7 @@ const jobs = [
   },
   {
     id: 2,
-    image_url: "image2.jpg",
+    image_url: "default",
     title: "Graphic Designer",
     poster: "Freelance",
     source: "Dribbble",
@@ -28,7 +33,7 @@ const jobs = [
   },
   {
     id: 3,
-    image_url: "image3.jpg",
+    image_url: "default",
     title: "Data Scientist",
     poster: "Facebook Inc.",
     source: "LinkedIn",
@@ -38,7 +43,7 @@ const jobs = [
   },
   {
     id: 4,
-    image_url: "image4.jpg",
+    image_url: "default",
     title: "Product Manager",
     poster: "Amazon",
     source: "Glassdoor",
@@ -48,7 +53,7 @@ const jobs = [
   },
   {
     id: 5,
-    image_url: "image5.jpg",
+    image_url: "default",
     title: "UI/UX Designer",
     poster: "Microsoft",
     source: "Behance",
@@ -61,7 +66,7 @@ const jobs = [
 const jobDetails = [
   {
     id: 1,
-    image_url: "image1.jpg",
+    image_url: "default",
     title: "Software Engineer",
     poster: "Google LLC",
     location: "Mountain View, CA",
@@ -74,7 +79,7 @@ const jobDetails = [
   },
   {
     id: 2,
-    image_url: "image2.jpg",
+    image_url: "default",
     title: "Graphic Designer",
     poster: "Freelance",
     location: "Remote",
@@ -87,7 +92,7 @@ const jobDetails = [
   },
   {
     id: 3,
-    image_url: "image3.jpg",
+    image_url: "default",
     title: "Data Scientist",
     poster: "Facebook Inc.",
     location: "Menlo Park, CA",
@@ -100,7 +105,7 @@ const jobDetails = [
   },
   {
     id: 4,
-    image_url: "image4.jpg",
+    image_url: "default",
     title: "Product Manager",
     poster: "Amazon",
     location: "Seattle, WA",
@@ -113,7 +118,7 @@ const jobDetails = [
   },
   {
     id: 5,
-    image_url: "image5.jpg",
+    image_url: "default",
     title: "UI/UX Designer",
     poster: "Microsoft",
     location: "Redmond, WA",
@@ -145,26 +150,31 @@ function JobCard({
   }
   return (
     <div
-      className={`bg-background shadow-xl rounded-xl w-96 my-4 hover:bg-gray-200 aspect-video ${
-        isClicked ? "bg-gray-200" : "bg-background"
+      className={`bg-background shadow-xl rounded-xl w-96 my-4 hover:border hover:border-[#4945C4] aspect-video ${
+        isClicked ? "border border-[#4945C4]" : "bg-background"
       }`}
     >
       <div className="flex h-full p-4 justify-between">
         <div className="Content grid space-y-2">
-          <div className="flex space-x-2">
-            <div>
-              <div className="bg-background shadow-xl rounded-xl w-20 aspect-square">
-                {image_url}
-              </div>
-            </div>
-            <div>
-              <div>{title}</div>
-              <div>{poster}</div>
+          <div>
+            <div className="bg-background shadow-xl rounded-xl w-20 aspect-square">
+              <Image
+                src={defaultImage}
+                alt="img"
+                className="w-40"
+                loading="lazy"
+                draggable={false}
+              />
             </div>
           </div>
-          <div className="self-end">
+          <div>
+            <h5 className="font-semibold">{title}</h5>
+            <p className="text-sm">{poster}</p>
+          </div>
+
+          <p className="self-end text-sm">
             {source} - {posttime}
-          </div>
+          </p>
         </div>
         {/* <div className="flex space-x-2">
           <div>{isLiked ? "Liked" : "notLiked"}</div>
@@ -179,7 +189,9 @@ function JobCards({ params, jobClickedID }: any) {
   const totalJobs = jobs.length;
   return (
     <div className="space-y-4">
-      <div>{totalJobs} Lowongan</div>
+      <div>
+        <p className="text-sm">{totalJobs} Lowongan</p>
+      </div>
       <div className="space-y-4">
         {jobs.map((job) => (
           <Link
@@ -202,10 +214,16 @@ function JobCards({ params, jobClickedID }: any) {
         ))}
       </div>
       <div className="bg=background rounded-xl shadow-xl w-96">
-        <div className="flex p-4 justify-between">
-          <div>Prev</div>
-          <div>Pages</div>
-          <div>Next</div>
+        <div className="flex p-4 justify-between text-[#4945C4] items-center text-xl">
+          <IoChevronBack />
+          <div className="space-x-2">
+            <SmallButton>1</SmallButton>
+            <SmallButton variant="ghost">2</SmallButton>
+            <SmallButton variant="ghost">3</SmallButton>
+            <SmallButton variant="ghost">4</SmallButton>
+            <SmallButton variant="ghost">5</SmallButton>
+          </div>
+          <IoChevronForward />
         </div>
       </div>
     </div>
@@ -214,15 +232,18 @@ function JobCards({ params, jobClickedID }: any) {
 
 function CVStitch() {
   return (
-    <div>
-      <h2>CV Scan</h2>
-      <div className="flex space-x-3">
-        <div className="w-full p-4 h-96 bg-gray-300 rounded-xl">
+    <div className="space-y-4">
+      <div className="grid space-x-3">
+        <div className="w-2/3 p-4 h-96 bg-gray-300 rounded-xl justify-self-center">
           <div className="grid h-full border border-1 rounded-xl p-4">
             <Input className="self-center" id="picture" type="file" />
           </div>
         </div>
-        <Button type="button">Scan</Button>
+      </div>
+      <div className="grid">
+        <Button className="w-96 justify-self-center" type="button">
+          Cari
+        </Button>
       </div>
     </div>
   );
@@ -235,11 +256,17 @@ function JobDetail({ id }: any) {
     <div className="space-y-4">
       <div className="Image">
         <div className="bg-background shadow-xl rounded-xl w-32 aspect-square">
-          {job.image_url}
+          <Image
+            src={defaultImage}
+            alt="img"
+            className="w-40"
+            loading="lazy"
+            draggable={false}
+          />
         </div>
       </div>
       <div>
-        <h3>{job.title}</h3>
+        <h3 className="font-semibold text-2xl">{job.title}</h3>
         <p>{job.poster}</p>
       </div>
       <div>
@@ -247,14 +274,17 @@ function JobDetail({ id }: any) {
         <p>{job.short_detail}</p>
         <p>{job.type}</p>
       </div>
-      <p>{job.posttime}</p>
+      <p className="text-sm">{job.posttime}</p>
       <div className="space-x-2">
         <Link href={job.link}>
           <Button>Buka</Button>
         </Link>
         <Button variant={"outline"}>Simpan</Button>
       </div>
-      <p>{job.description}</p>
+      <div>
+        <h4 className="font-semibold">Deskripsi</h4>
+        <p>{job.description}</p>
+      </div>
     </div>
   );
 }
@@ -264,10 +294,15 @@ function JobDetails({ id }: any) {
 
   if (!job) {
     return (
-      <div className="bg=background rounded-xl shadow-xl w-full">
-        <div className="p-8 space-y-4">
-          <div>Pilih lowongan kerja</div>
-          <div>Detail lowongan akan ditampilkan disini</div>
+      <div className="bg-gray-200 rounded-xl shadow-xl w-full">
+        <div className="flex p-8 items-start space-x-4">
+          <div>
+            <IoMdArrowRoundBack className="text-2xl" />
+          </div>
+          <div className=" space-y-4">
+            <h4 className="text-2xl font-bold">Pilih lowongan kerja</h4>
+            <p>Detail lowongan akan ditampilkan disini</p>
+          </div>
         </div>
       </div>
     );
@@ -275,7 +310,7 @@ function JobDetails({ id }: any) {
   return (
     <div className="grid shrink bg-background rounded-xl shadow-xl w-full">
       <div className="p-8 space-y-8">
-        <Tabs defaultValue="detail" className="w-full space-y-4">
+        <Tabs defaultValue="detail" className="w-full space-y-8">
           <TabsList>
             <TabsTrigger value="detail">Detail</TabsTrigger>
             <TabsTrigger value="chat">Chat Bot</TabsTrigger>
@@ -291,8 +326,10 @@ function JobDetails({ id }: any) {
             <CVStitch />
           </TabsContent>
         </Tabs>
-        <CourseCards title={"Course Skill Up relevan"} />
-        <CourseCards title={"Rekomendasi Course"} />
+        <div className="p-8 shadow-xl rounded-xl border-2 space-y-8">
+          <CourseCards title={"Course Skill Up relevan"} />
+          <CourseCards title={"Rekomendasi Course"} />
+        </div>
       </div>
     </div>
   );

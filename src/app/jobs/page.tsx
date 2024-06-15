@@ -1,3 +1,7 @@
 export default function JobPage() {
-  return <div>Search for jobs</div>;
+  return (
+    <div className="grid w-full">
+      {/* <div className="justify-self-center">Search for jobs</div> */}
+    </div>
+  );
 }
