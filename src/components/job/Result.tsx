@@ -249,45 +249,45 @@ function CVStitch() {
   );
 }
 
-function JobDetail({ id }: any) {
-  const job = jobDetails.find((job) => job.id === Number(id));
+// function JobDetail({ id }: any) {
+//   const job = jobDetails.find((job) => job.id === Number(id));
 
-  return (
-    <div className="space-y-4">
-      <div className="Image">
-        <div className="bg-background shadow-xl rounded-xl w-32 aspect-square">
-          <Image
-            src={defaultImage}
-            alt="img"
-            className="w-40"
-            loading="lazy"
-            draggable={false}
-          />
-        </div>
-      </div>
-      <div>
-        <h3 className="font-semibold text-2xl">{job.title}</h3>
-        <p>{job.poster}</p>
-      </div>
-      <div>
-        <p>{job.location}</p>
-        <p>{job.short_detail}</p>
-        <p>{job.type}</p>
-      </div>
-      <p className="text-sm">{job.posttime}</p>
-      <div className="space-x-2">
-        <Link href={job.link}>
-          <Button>Buka</Button>
-        </Link>
-        <Button variant={"outline"}>Simpan</Button>
-      </div>
-      <div>
-        <h4 className="font-semibold">Deskripsi</h4>
-        <p>{job.description}</p>
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div className="space-y-4">
+//       <div className="Image">
+//         <div className="bg-background shadow-xl rounded-xl w-32 aspect-square">
+//           <Image
+//             src={defaultImage}
+//             alt="img"
+//             className="w-40"
+//             loading="lazy"
+//             draggable={false}
+//           />
+//         </div>
+//       </div>
+//       <div>
+//         <h3 className="font-semibold text-2xl">{job.title}</h3>
+//         <p>{job.poster}</p>
+//       </div>
+//       <div>
+//         <p>{job.location}</p>
+//         <p>{job.short_detail}</p>
+//         <p>{job.type}</p>
+//       </div>
+//       <p className="text-sm">{job.posttime}</p>
+//       <div className="space-x-2">
+//         <Link href={job.link}>
+//           <Button>Buka</Button>
+//         </Link>
+//         <Button variant={"outline"}>Simpan</Button>
+//       </div>
+//       <div>
+//         <h4 className="font-semibold">Deskripsi</h4>
+//         <p>{job.description}</p>
+//       </div>
+//     </div>
+//   );
+// }
 
 function JobDetails({ id }: any) {
   const job = jobDetails.find((job) => job.id === Number(id));
@@ -317,7 +317,40 @@ function JobDetails({ id }: any) {
             <TabsTrigger value="cv">CV Stitch</TabsTrigger>
           </TabsList>
           <TabsContent value="detail" className="space-y-4">
-            <JobDetail id={id} />
+            {/* <JobDetail id={id} /> */}
+            <div className="space-y-4">
+              <div className="Image">
+                <div className="bg-background shadow-xl rounded-xl w-32 aspect-square">
+                  <Image
+                    src={defaultImage}
+                    alt="img"
+                    className="w-40"
+                    loading="lazy"
+                    draggable={false}
+                  />
+                </div>
+              </div>
+              <div>
+                <h3 className="font-semibold text-2xl">{job.title}</h3>
+                <p>{job.poster}</p>
+              </div>
+              <div>
+                <p>{job.location}</p>
+                <p>{job.short_detail}</p>
+                <p>{job.type}</p>
+              </div>
+              <p className="text-sm">{job.posttime}</p>
+              <div className="space-x-2">
+                <Link href={job.link}>
+                  <Button>Buka</Button>
+                </Link>
+                <Button variant={"outline"}>Simpan</Button>
+              </div>
+              <div>
+                <h4 className="font-semibold">Deskripsi</h4>
+                <p>{job.description}</p>
+              </div>
+            </div>
           </TabsContent>
           <TabsContent value="chat" className="space-y-4">
             <ChatBot />
