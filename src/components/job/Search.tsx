@@ -1,15 +1,22 @@
-'use client'
-
+"use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "./../ui/input";
 import { Button } from "./../ui/button";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function SearchBox() {
   const router = useRouter();
   const pathname = usePathname();
+
+  const [inputValue, setInputValue] = useState("");
+  const handleSearch = () => {
+    // Navigate to '/jobs/Frontend' with the input value
+    router.push(`/jobs/${inputValue}`);
+  };
+
   return (
     <div className="rounded-xl shadow-xl bg-white">
       <div className="p-8 py-12">
@@ -18,18 +25,26 @@ export default function SearchBox() {
             <div className="flex justify-between items-center">
               <Link href={"/jobs"}>Back</Link>
               <TabsList>
-                <TabsTrigger value="normal">Nromal Search</TabsTrigger>
-                <TabsTrigger value="story">Job Story Tell</TabsTrigger>
+                <TabsTrigger value="normal">Normal</TabsTrigger>
+                <TabsTrigger value="story">Story Tell</TabsTrigger>
                 <TabsTrigger value="cv">CV Scan</TabsTrigger>
               </TabsList>
             </div>
             <TabsContent value="normal">
               <h2>Normal Search</h2>
               <div className="flex space-x-3">
-                <Input />
+                <Input
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  placeholder="Cari pekerjaan"
+                />
                 <Input />
                 <Button variant={"outline"}>Filter</Button>
-                <Button type="button" onClick={() => router.push(`/jobs/Frontend`)}>
+                <Button
+                  type="button"
+                  onClick={() => router.push(`/jobs/${inputValue}`)}
+                >
                   Cari
                 </Button>
               </div>
@@ -37,8 +52,17 @@ export default function SearchBox() {
             <TabsContent value="story">
               <h2>Job Story Tell</h2>
               <div className="flex space-x-3">
-                <Input />
-                <Button type="button" onClick={() => router.push(`/jobs/Frontend`)}>
+                <Input
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  placeholder="Ceritakan pengalaman mu"
+                />
+                <Button variant={"outline"}>Filter</Button>
+                <Button
+                  type="button"
+                  onClick={() => router.push(`/jobs/${inputValue}`)}
+                >
                   Cari
                 </Button>
               </div>
@@ -51,7 +75,10 @@ export default function SearchBox() {
                     <Input className="self-center" id="picture" type="file" />
                   </div>
                 </div>
-                <Button type="button" onClick={() => router.push(`/jobs/Frontend`)}>
+                <Button
+                  type="button"
+                  onClick={() => router.push(`/jobs/Frontend`)}
+                >
                   Cari
                 </Button>
               </div>

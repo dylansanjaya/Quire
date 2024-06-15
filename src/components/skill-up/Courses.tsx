@@ -53,29 +53,14 @@ const courses = [
     review_score: "5/5",
     link_url: "/skill-up",
   },
-  {
-    id: 4,
-    image_url: "bruh",
-    title: "title",
-    source: "source",
-    review_score: "5/5",
-    link_url: "/skill-up",
-  },
-  {
-    id: 5,
-    image_url: "bruh",
-    title: "title",
-    source: "source",
-    review_score: "5/5",
-    link_url: "/skill-up",
-  },
+
 ];
 
-export default function CourseCards() {
+export default function CourseCards({title}: any) {
   return (
-      <div className="space-y-4">
-        <div>Popular</div>
-        <div className="flex space-x-4">
+      <div className="space-y-4 ">
+        <div>{title}</div>
+        <div className="flex space-x-4 scroll-m-8">
           {courses.map((course) => (
             <CourseCard
               key={course.id}

@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "../ui/input";
+import CourseCards from "../skill-up/Courses";
+import ChatBot from "./Chat";
 
 const jobs = [
   {
@@ -141,12 +145,12 @@ function JobCard({
   }
   return (
     <div
-      className={`bg-background shadow-xl rounded-xl w-96 my-4 hover:bg-gray-200 ${
+      className={`bg-background shadow-xl rounded-xl w-96 my-4 hover:bg-gray-200 aspect-video ${
         isClicked ? "bg-gray-200" : "bg-background"
       }`}
     >
-      <div className="flex p-4 justify-between">
-        <div className="Content space-y-2">
+      <div className="flex h-full p-4 justify-between">
+        <div className="Content grid space-y-2">
           <div className="flex space-x-2">
             <div>
               <div className="bg-background shadow-xl rounded-xl w-20 aspect-square">
@@ -158,7 +162,7 @@ function JobCard({
               <div>{poster}</div>
             </div>
           </div>
-          <div>
+          <div className="self-end">
             {source} - {posttime}
           </div>
         </div>
@@ -178,7 +182,11 @@ function JobCards({ params, jobClickedID }: any) {
       <div>{totalJobs} Lowongan</div>
       <div className="space-y-4">
         {jobs.map((job) => (
-          <Link href={`/jobs/${params}?job_id=${job.id}`} key={job.id} scroll={false}>
+          <Link
+            href={`/jobs/${params}?job_id=${job.id}`}
+            key={job.id}
+            scroll={false}
+          >
             <JobCard
               image_url={job.image_url}
               title={job.title}
@@ -204,7 +212,54 @@ function JobCards({ params, jobClickedID }: any) {
   );
 }
 
+function CVStitch() {
+  return (
+    <div>
+      <h2>CV Scan</h2>
+      <div className="flex space-x-3">
+        <div className="w-full p-4 h-96 bg-gray-300 rounded-xl">
+          <div className="grid h-full border border-1 rounded-xl p-4">
+            <Input className="self-center" id="picture" type="file" />
+          </div>
+        </div>
+        <Button type="button">Scan</Button>
+      </div>
+    </div>
+  );
+}
+
 function JobDetail({ id }: any) {
+  const job = jobDetails.find((job) => job.id === Number(id));
+
+  return (
+    <div className="space-y-4">
+      <div className="Image">
+        <div className="bg-background shadow-xl rounded-xl w-32 aspect-square">
+          {job.image_url}
+        </div>
+      </div>
+      <div>
+        <h3>{job.title}</h3>
+        <p>{job.poster}</p>
+      </div>
+      <div>
+        <p>{job.location}</p>
+        <p>{job.short_detail}</p>
+        <p>{job.type}</p>
+      </div>
+      <p>{job.posttime}</p>
+      <div className="space-x-2">
+        <Link href={job.link}>
+          <Button>Buka</Button>
+        </Link>
+        <Button variant={"outline"}>Simpan</Button>
+      </div>
+      <p>{job.description}</p>
+    </div>
+  );
+}
+
+function JobDetails({ id }: any) {
   const job = jobDetails.find((job) => job.id === Number(id));
 
   if (!job) {
@@ -218,43 +273,36 @@ function JobDetail({ id }: any) {
     );
   }
   return (
-    <div className="bg=background rounded-xl shadow-xl w-full">
-      <div className="grid p-8 space-y-4">
-        <div className="justify-self-end">test</div>
-        <div className="Image">
-          <div className="bg-background shadow-xl rounded-xl w-32 aspect-square">
-            {job.image_url}
-          </div>
-        </div>
-        <div>
-          <div>{job.title}</div>
-          <div>{job.poster}</div>
-        </div>
-        <div>
-          <div>{job.location}</div>
-          <div>{job.short_detail}</div>
-          <div>{job.type}</div>
-        </div>
-        <div>{job.posttime}</div>
-        <div className="space-x-2">
-          <Link href={job.link}>
-            <Button>Buka</Button>
-          </Link>
-          <Button>Sesuaikan CV</Button>
-        </div>
-        <div>{job.description}</div>
+    <div className="grid shrink bg-background rounded-xl shadow-xl w-full">
+      <div className="p-8 space-y-8">
+        <Tabs defaultValue="detail" className="w-full space-y-4">
+          <TabsList>
+            <TabsTrigger value="detail">Detail</TabsTrigger>
+            <TabsTrigger value="chat">Chat Bot</TabsTrigger>
+            <TabsTrigger value="cv">CV Stitch</TabsTrigger>
+          </TabsList>
+          <TabsContent value="detail" className="space-y-4">
+            <JobDetail id={id} />
+          </TabsContent>
+          <TabsContent value="chat" className="space-y-4">
+            <ChatBot />
+          </TabsContent>
+          <TabsContent value="cv" className="space-y-4">
+            <CVStitch />
+          </TabsContent>
+        </Tabs>
+        <CourseCards title={"Course Skill Up relevan"} />
+        <CourseCards title={"Rekomendasi Course"} />
       </div>
     </div>
   );
 }
 
-export default function Result({
-  params, searchParams
-}: any) {
+export default function Result({ params, searchParams }: any) {
   return (
     <div className="flex space-x-4">
       <JobCards params={params} jobClickedID={searchParams} />
-      <JobDetail id={searchParams} />
+      <JobDetails id={searchParams} />
     </div>
   );
 }

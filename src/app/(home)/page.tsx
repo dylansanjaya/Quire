@@ -113,10 +113,10 @@ export default function Home() {
   }
 
   return (
-    <main className="w-full h-screen mb-9">
+    <div className="w-full h-screen mb-9">
       <Masthead />
       <AboutSection />
       <ServiceSection />\{" "}
-    </main>
+    </div>
   );
 }
