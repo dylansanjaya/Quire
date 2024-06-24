@@ -190,13 +190,119 @@ export default function Home() {
     )
   }
 
-  
+  function Team(){
 
+    const teamData = [
+      {
+        imageSrc: "/assets/img/raiz.jpg",
+        name: "M Raiz Shiddiq P",
+        title: "ML Developer"
+      },
+      {
+        imageSrc: "/assets/img/veda.png",
+        name: "Veda Bezaleel",
+        title: "Project Manager"
+      },
+      {
+        imageSrc: "/assets/img/dylan.jpg",
+        name: "M Dylan Hikma S",
+        title: "Web Developer"
+      },
+    ]
+
+    function Member({imageSrc, name, title}: {imageSrc: string, name: string, title: string}){
+      return (
+        <div className="flex items-center flex-col">
+          <div className="relative size-40">
+            <Image src={imageSrc} alt="member" fill className="rounded-lg" />
+          </div>
+          <div className="flex flex-col mt-4 mb-2 text-center">
+            <span className="font-semibold text-lg">
+              {name}
+            </span>
+            <span className="font-light text-sm">
+              {title}
+            </span>
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div className="flex flex-col items-center justify-between h-auto bg-white py-12 md:py-32 px-[5%]">
+        <span className="text-3xl md:text-6xl font-bold text-primary mb-11">
+          Meet our expert team
+        </span>
+        <div className="flex justify-between w-full">
+          {
+            teamData.map( (member, index) => (
+              <Member key={index} imageSrc={member.imageSrc} name={member.name} title={member.title} />
+             ))
+          }
+        </div>
+      </div>
+    )
+  }
+
+  function Footer() {
+    const info = [
+      {
+        title: 'Pengguna',
+        sub: [
+          { title: 'Cari Lowongan', url: '#' },
+          { title: 'Premium', url: '#' },
+          { title: 'FAQ', url: '#' },
+        ]
+      },
+      {
+        title: 'Mitra',
+        sub: [
+          { title: 'Daftar Sekarang', url: '#' },
+          { title: 'Tentang Mitra', url: '#' },
+          { title: 'Pricing', url: '#' },
+        ]
+      }
+    ];
+  
+    function FooterPage({ title, sub }: { title: string; sub: { title: string; url: string }[] }) {
+      return (
+        <div className="flex flex-col max-w-[30%] h-full">
+          <span className="font-bold mb-6">{title}</span>
+          <ul className="leading-4">
+            {sub.map((item) => (
+              <li key={item.title} className="h-full">
+                <a href={item.url}>{item.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+  
+    return (
+      <div className="footer flex items-start justify-between h-[348px] bg-[#252526] py-12 px-[5%] text-white">
+        <div className="flex flex-col max-w-[30%] h-full">
+          <div className="Logo font-bold text-xl text-background relative w-16 h-9 md:w-[88px] md:h-12">
+            <Image src={"/assets/img/logo-font.png"} alt="logo font" fill />
+          </div>
+          <span>Capai karirmu dengan jalur yang cepat dan tepat.</span>
+          <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+          <div>23quire@gmail.com</div>
+        </div>
+          {info.map((item) => (
+            <FooterPage key={item.title} title={item.title} sub={item.sub} />
+          ))}
+      </div>
+    );
+  }
+  
   return (
-    <div className="w-full h-screen mb-8">
+    <div className="w-full h-screen">
       <Masthead />
       <ServiceSection />
       <About />
+      <Team />
+      <Footer />
     </div>
   );
 }
