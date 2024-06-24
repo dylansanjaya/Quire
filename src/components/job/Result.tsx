@@ -13,51 +13,53 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 const jobs = [
   {
     id: 1,
-    image_url: "default",
-    title: "Software Engineer",
-    poster: "Google LLC",
+    image_url:
+      "https://www.grand-indonesia.com/wp-content/uploads/2023/07/KOPI-KENANGAN_LOGO-2020.png",
+    title: "Barista",
+    poster: "Kopi Kenangan",
     source: "Indeed",
-    posttime: "3 Hours ago",
+    posttime: "3 Jam yang lalu",
     isLiked: false,
     isSaved: true,
   },
   {
     id: 2,
-    image_url: "default",
-    title: "Graphic Designer",
-    poster: "Freelance",
-    source: "Dribbble",
-    posttime: "4 Hours ago",
+    image_url: "https://logowik.com/content/uploads/images/280_starbucks.jpg",
+    title: "Barista",
+    poster: "Starbucks Indonesia",
+    source: "Instagram",
+    posttime: "4 Jam yang lalu",
     isLiked: true,
     isSaved: false,
   },
   {
     id: 3,
-    image_url: "default",
-    title: "Data Scientist",
-    poster: "Facebook Inc.",
-    source: "LinkedIn",
-    posttime: "2 Days ago",
+    image_url:
+      "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_809,h_500/https://www.theematicmall.com/wp-content/uploads/2016/05/logo-janji-jiwa.jpg",
+    title: "Barista",
+    poster: "Janji Jiwa",
+    source: "Indeed",
+    posttime: "2 Hari yang lalu",
     isLiked: false,
     isSaved: true,
   },
   {
     id: 4,
-    image_url: "default",
-    title: "Product Manager",
-    poster: "Amazon",
-    source: "Glassdoor",
-    posttime: "1 Week ago",
+    image_url: "https://bigmall.co.id/wp-content/uploads/2023/05/excelso.jpg",
+    title: "Barista",
+    poster: "Excelso",
+    source: "Indeed",
+    posttime: "1 Minggu yang lalu",
     isLiked: true,
     isSaved: false,
   },
   {
     id: 5,
-    image_url: "default",
-    title: "UI/UX Designer",
-    poster: "Microsoft",
-    source: "Behance",
-    posttime: "5 Days ago",
+    image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnhKUDxpDRyUKvYqHN58KB1A6WYZWnwUdisQ&s",
+    title: "Instagram",
+    poster: "Fore Coffee",
+    source: "JobStreet",
+    posttime: "5 Hari yang lalu",
     isLiked: false,
     isSaved: true,
   },
@@ -66,68 +68,71 @@ const jobs = [
 const jobDetails = [
   {
     id: 1,
-    image_url: "default",
-    title: "Software Engineer",
-    poster: "Google LLC",
-    location: "Mountain View, CA",
-    short_detail: "Develop scalable web applications.",
-    type: "Full-time",
-    posttime: "3 Hours ago",
-    link: "https://google.com/careers",
+    image_url:
+      "https://www.grand-indonesia.com/wp-content/uploads/2023/07/KOPI-KENANGAN_LOGO-2020.png",
+    title: "Barista",
+    poster: "Kopi Kenangan",
+    location: "Jakarta, Indonesia",
+    short_detail: "Menyajikan kopi berkualitas tinggi untuk pelanggan.",
+    type: "Penuh Waktu",
+    posttime: "3 Jam yang lalu",
+    link: "https://kopikenangan.com/karir",
     description:
-      "As a Software Engineer at Google, you will be working on cutting-edge technologies and developing scalable web applications to enhance user experience.",
+      "Sebagai Barista di Kopi Kenangan, Anda akan bertanggung jawab untuk menyajikan kopi berkualitas tinggi dan memberikan layanan terbaik kepada pelanggan. Kami mencari individu yang antusias dan berdedikasi.",
   },
   {
     id: 2,
-    image_url: "default",
-    title: "Graphic Designer",
-    poster: "Freelance",
-    location: "Remote",
-    short_detail: "Create stunning graphics for various clients.",
-    type: "Contract",
-    posttime: "4 Hours ago",
-    link: "https://dribbble.com/freelance-jobs",
+    image_url: "https://logowik.com/content/uploads/images/280_starbucks.jpg",
+    title: "Barista",
+    poster: "Starbucks Indonesia",
+    location: "Bandung, Indonesia",
+    short_detail: "Membuat dan menyajikan minuman kopi dengan standar tinggi.",
+    type: "Kontrak",
+    posttime: "4 Jam yang lalu",
+    link: "https://starbucks.co.id/karir",
     description:
-      "We are looking for a creative Graphic Designer to work on multiple projects for our clients. You should have a strong portfolio and experience in various design tools.",
+      "Kami mencari Barista yang berpengalaman untuk bergabung dengan tim kami di Starbucks Indonesia. Anda akan bertanggung jawab untuk membuat dan menyajikan minuman kopi dengan standar tinggi serta memberikan layanan pelanggan yang luar biasa.",
   },
   {
     id: 3,
-    image_url: "default",
-    title: "Data Scientist",
-    poster: "Facebook Inc.",
-    location: "Menlo Park, CA",
-    short_detail: "Analyze large datasets to derive insights.",
-    type: "Full-time",
-    posttime: "2 Days ago",
-    link: "https://facebook.com/careers",
+    image_url:
+      "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_809,h_500/https://www.theematicmall.com/wp-content/uploads/2016/05/logo-janji-jiwa.jpg",
+    title: "Barista",
+    poster: "Janji Jiwa",
+    location: "Surabaya, Indonesia",
+    short_detail:
+      "Menyediakan kopi dan minuman lainnya dengan cepat dan ramah.",
+    type: "Penuh Waktu",
+    posttime: "2 Hari yang lalu",
+    link: "https://janjijiwa.com/karir",
     description:
-      "Join our Data Science team to analyze and interpret complex data sets, derive actionable insights, and contribute to our data-driven culture.",
+      "Bergabunglah dengan tim Janji Jiwa sebagai Barista. Tanggung jawab Anda termasuk menyajikan kopi dan minuman lainnya dengan cepat dan ramah. Kami mencari individu yang memiliki semangat dan antusiasme dalam pelayanan pelanggan.",
   },
   {
     id: 4,
-    image_url: "default",
-    title: "Product Manager",
-    poster: "Amazon",
-    location: "Seattle, WA",
-    short_detail: "Lead the development of new products.",
-    type: "Full-time",
-    posttime: "1 Week ago",
-    link: "https://amazon.jobs",
+    image_url: "https://bigmall.co.id/wp-content/uploads/2023/05/excelso.jpg",
+    title: "Barista",
+    poster: "Excelso",
+    location: "Medan, Indonesia",
+    short_detail: "Mengoperasikan mesin kopi dan melayani pelanggan.",
+    type: "Penuh Waktu",
+    posttime: "1 Minggu yang lalu",
+    link: "https://excelso-coffee.com/karir",
     description:
-      "As a Product Manager at Amazon, you will be responsible for guiding the development of new products from concept to launch. You will work with cross-functional teams to ensure success.",
+      "Excelso sedang mencari Barista yang berpengalaman untuk bergabung dengan tim kami. Anda akan mengoperasikan mesin kopi dan melayani pelanggan dengan profesionalisme dan keahlian tinggi.",
   },
   {
     id: 5,
-    image_url: "default",
-    title: "UI/UX Designer",
-    poster: "Microsoft",
-    location: "Redmond, WA",
-    short_detail: "Design intuitive user interfaces.",
-    type: "Full-time",
-    posttime: "5 Days ago",
-    link: "https://careers.microsoft.com",
+    image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnhKUDxpDRyUKvYqHN58KB1A6WYZWnwUdisQ&s",
+    title: "Barista",
+    poster: "Fore Coffee",
+    location: "Yogyakarta, Indonesia",
+    short_detail: "Membuat dan menyajikan berbagai macam minuman kopi.",
+    type: "Penuh Waktu",
+    posttime: "5 Hari yang lalu",
+    link: "https://fore.coffee/karir",
     description:
-      "We are seeking a talented UI/UX Designer to create user-friendly interfaces for our software products. You will collaborate with developers and product managers to bring designs to life.",
+      "Sebagai Barista di Fore Coffee, Anda akan membuat dan menyajikan berbagai macam minuman kopi. Kami mencari seseorang yang kreatif dan memiliki hasrat terhadap kopi untuk bergabung dengan tim kami.",
   },
 ];
 
@@ -157,11 +162,13 @@ function JobCard({
       <div className="flex h-full p-4 justify-between">
         <div className="Content grid space-y-2">
           <div>
-            <div className="bg-background shadow-xl rounded-xl w-20 aspect-square">
+            <div className="relative bg-background shadow-xl rounded-xl w-20 aspect-square">
               <Image
-                src={defaultImage}
+                src={image_url}
                 alt="img"
-                className="w-40"
+                layout="fill"
+                objectFit="cover"
+                className="aspect-square rounded-xl"
                 loading="lazy"
                 draggable={false}
               />
@@ -317,19 +324,18 @@ function JobDetails({ id }: any) {
             <TabsTrigger value="cv">CV Stitch</TabsTrigger>
           </TabsList>
           <TabsContent value="detail" className="space-y-4">
-            {/* <JobDetail id={id} /> */}
             <div className="space-y-4">
-              <div className="Image">
-                <div className="bg-background shadow-xl rounded-xl w-32 aspect-square">
-                  <Image
-                    src={defaultImage}
-                    alt="img"
-                    className="w-40"
-                    loading="lazy"
-                    draggable={false}
-                  />
-                </div>
-              </div>
+              <div className="relative bg-background shadow-xl rounded-xl w-40 aspect-square">
+              <Image
+                src={job.image_url}
+                alt="img"
+                layout="fill"
+                objectFit="cover"
+                className="aspect-square rounded-xl"
+                loading="lazy"
+                draggable={false}
+              />
+            </div>
               <div>
                 <h3 className="font-semibold text-2xl">{job.title}</h3>
                 <p>{job.poster}</p>
@@ -361,7 +367,7 @@ function JobDetails({ id }: any) {
         </Tabs>
         <div className="p-8 shadow-xl rounded-xl border-2 space-y-8">
           <CourseCards title={"Course Skill Up relevan"} />
-          <CourseCards title={"Rekomendasi Course"} />
+          {/* <CourseCards title={"Rekomendasi Course"} /> */}
         </div>
       </div>
     </div>
