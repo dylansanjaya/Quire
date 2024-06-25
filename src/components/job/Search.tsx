@@ -3,21 +3,13 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "./../ui/input";
 import { Button } from "./../ui/button";
-import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import { IoChevronBack } from "react-icons/io5";
+import Predictions from "./Predict";
 
 export default function SearchBox() {
-  const router = useRouter();
-  const pathname = usePathname();
-
   const [inputValue, setInputValue] = useState("");
-  const handleSearch = () => {
-    // Navigate to '/jobs/Frontend' with the input value
-    router.push(`/jobs/${inputValue}`);
-  };
-
   return (
     <div className="rounded-xl shadow-xl bg-white">
       <div className="p-8 py-12">
@@ -47,12 +39,11 @@ export default function SearchBox() {
                   placeholder="Masukan kata kunci"
                 />
                 <Button variant={"outline"}>Filter</Button>
-                <Button
-                  type="button"
-                  onClick={() => router.push(`/jobs/${inputValue}`)}
-                >
+                <Link href={`/jobs/${inputValue}`}>
+                <Button>
                   Cari
                 </Button>
+                </Link>
               </div>
             </TabsContent>
             <TabsContent value="story" className="space-y-4">
@@ -64,12 +55,13 @@ export default function SearchBox() {
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Ceritakan pekerjaan impian mu"
                 />
-                <Button
-                  type="button"
-                  onClick={() => router.push(`/jobs/${inputValue}`)}
-                >
-                  Cari
-                </Button>
+                <Link href={`/jobs/predict?prompt=${inputValue}`}>
+                  <Button
+                    type="button"
+                  >
+                    Cari
+                  </Button>
+                </Link>
               </div>
             </TabsContent>
             <TabsContent value="cv" className="space-y-4">
@@ -86,7 +78,6 @@ export default function SearchBox() {
                   className="justify-self-center"
                   disabled={true}
                   type="button"
-                  onClick={() => router.push(`/jobs/Frontend`)}
                 >
                   Cari
                 </Button>
