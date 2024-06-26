@@ -6,64 +6,25 @@ import { Input } from "../ui/input";
 import CourseCards from "../skill-up/Courses";
 import ChatBot from "./Chat";
 import Image from "next/image";
-import defaultImage from "P/assets/img/logo.png";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
-const jobs = [
-  {
-    id: 1,
-    image_url:
-      "https://www.grand-indonesia.com/wp-content/uploads/2023/07/KOPI-KENANGAN_LOGO-2020.png",
-    title: "Barista",
-    poster: "Kopi Kenangan",
-    source: "Indeed",
-    posttime: "3 Jam yang lalu",
-    isLiked: false,
-    isSaved: true,
-  },
-  {
-    id: 2,
-    image_url: "https://logowik.com/content/uploads/images/280_starbucks.jpg",
-    title: "Barista",
-    poster: "Starbucks Indonesia",
-    source: "Instagram",
-    posttime: "4 Jam yang lalu",
-    isLiked: true,
-    isSaved: false,
-  },
-  {
-    id: 3,
-    image_url:
-      "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_809,h_500/https://www.theematicmall.com/wp-content/uploads/2016/05/logo-janji-jiwa.jpg",
-    title: "Barista",
-    poster: "Janji Jiwa",
-    source: "Indeed",
-    posttime: "2 Hari yang lalu",
-    isLiked: false,
-    isSaved: true,
-  },
-  {
-    id: 4,
-    image_url: "https://bigmall.co.id/wp-content/uploads/2023/05/excelso.jpg",
-    title: "Barista",
-    poster: "Excelso",
-    source: "Indeed",
-    posttime: "1 Minggu yang lalu",
-    isLiked: true,
-    isSaved: false,
-  },
-  {
-    id: 5,
-    image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnhKUDxpDRyUKvYqHN58KB1A6WYZWnwUdisQ&s",
-    title: "Instagram",
-    poster: "Fore Coffee",
-    source: "JobStreet",
-    posttime: "5 Hari yang lalu",
-    isLiked: false,
-    isSaved: true,
-  },
-];
+async function getJobs(params: any) {
+  const res = await fetch('http://localhost:8080/api/job',{
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ search: params }),
+    cache: 'no-store',
+  })
+ 
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+ 
+  return res.json()
+}
 
 const jobDetails = [
   {
@@ -140,7 +101,7 @@ function JobCard({
   jobID,
   image_url,
   title,
-  poster,
+  company,
   posttime,
   source,
   isLiked,
@@ -176,7 +137,7 @@ function JobCard({
           </div>
           <div>
             <h5 className="font-semibold">{title}</h5>
-            <p className="text-sm">{poster}</p>
+            <p className="text-sm">{company}</p>
           </div>
 
           <p className="self-end text-sm">
@@ -192,7 +153,11 @@ function JobCard({
   );
 }
 
-function JobCards({ params, jobClickedID }: any) {
+async function JobCards({ params, jobClickedID }: any) {
+  const data = await getJobs(params)
+
+  const jobs = data.data.lowongan
+
   const totalJobs = jobs.length;
   return (
     <div className="space-y-4">
@@ -200,7 +165,7 @@ function JobCards({ params, jobClickedID }: any) {
         <p className="text-sm">{totalJobs} Lowongan</p>
       </div>
       <div className="space-y-4">
-        {jobs.map((job) => (
+        {jobs.map((job: any) => (
           <Link
             href={`/jobs/${params}?job_id=${job.id}`}
             key={job.id}
@@ -209,11 +174,11 @@ function JobCards({ params, jobClickedID }: any) {
             <JobCard
               image_url={job.image_url}
               title={job.title}
-              poster={job.poster}
-              source={job.source}
+              company={job.company}
+              source={"semarloker"}
               posttime={job.posttime}
-              isLiked={job.isLiked}
-              isSaved={job.isSaved}
+              // isLiked={job.isLiked}
+              // isSaved={job.isSaved}
               jobID={job.id}
               jobClickedID={jobClickedID}
             />
@@ -256,45 +221,6 @@ function CVStitch() {
   );
 }
 
-// function JobDetail({ id }: any) {
-//   const job = jobDetails.find((job) => job.id === Number(id));
-
-//   return (
-//     <div className="space-y-4">
-//       <div className="Image">
-//         <div className="bg-background shadow-xl rounded-xl w-32 aspect-square">
-//           <Image
-//             src={defaultImage}
-//             alt="img"
-//             className="w-40"
-//             loading="lazy"
-//             draggable={false}
-//           />
-//         </div>
-//       </div>
-//       <div>
-//         <h3 className="font-semibold text-2xl">{job.title}</h3>
-//         <p>{job.poster}</p>
-//       </div>
-//       <div>
-//         <p>{job.location}</p>
-//         <p>{job.short_detail}</p>
-//         <p>{job.type}</p>
-//       </div>
-//       <p className="text-sm">{job.posttime}</p>
-//       <div className="space-x-2">
-//         <Link href={job.link}>
-//           <Button>Buka</Button>
-//         </Link>
-//         <Button variant={"outline"}>Simpan</Button>
-//       </div>
-//       <div>
-//         <h4 className="font-semibold">Deskripsi</h4>
-//         <p>{job.description}</p>
-//       </div>
-//     </div>
-//   );
-// }
 
 function JobDetails({ id }: any) {
   const job = jobDetails.find((job) => job.id === Number(id));

@@ -71,6 +71,13 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.lokersemar.id',
+        port: '',
+        pathname: '/**',
+      },
+
     ],
   },
 };

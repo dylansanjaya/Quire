@@ -1,0 +1,23 @@
+LISENSI PERANGKAT LUNAK TRIAL QUIRE
+
+1. Pemberian Lisensi: "Quire" adalah aplikasi berbasis web yang membutuhkan koneksi internet untuk diakses dan digunakan. Meskipun dapat diakses dan digunakan, semua hak cipta dan kepemilikan atas kode dan desain aplikasi tetap milik Quire. Quire memberikan hak non-eksklusif, bebas royalti, dan berlaku di seluruh dunia untuk menggunakan Aplikasi, tetapi tidak diperbolehkan untuk memodifikasi, menyesuaikan, menerjemahkan, atau membuat karya turunan dari Aplikasi.
+
+2. Hak Atas Data: Semua data lowongan pekerjaan dan kursus yang ditampilkan dalam aplikasi ini sepenuhnya milik entitas yang mengunggah atau memposting data tersebut di platform mereka sendiri. Quire hanya berfungsi sebagai perantara dalam menampilkan data tersebut. Hak atas kekayaan intelektual tetap mengikuti ketentuan layanan penggunaan dari sumber aslinya.
+
+3. Batasan Akses: Akses ke aplikasi ini diberikan hingga September 2024. Akses ini diberikan untuk keperluan penjurian. Setelah itu, aplikasi akan diperbarui dan mungkin perlu membayar untuk mengakses beberapa fitur yang akan dijelaskan lebih lanjut setelah lisensi diperbarui.
+
+4. Umpan Balik dan Privasi Data: Aplikasi ini masih dalam tahap pengembangan dan sangat menghargai umpan balik. Jika menemukan masalah atau memiliki saran, atau menemukan data yang tidak seharusnya ditampilkan, silakan hubungi melalui email di 23quire@gmail.com. Jika tidak merespons dalam waktu 30 hari, berhak melaporkannya lebih lanjut.
+
+5. Migrasi: Setelah 30 September 2024, rencana untuk memindahkan semua deployment backend, termasuk server dan model AI. Selama periode ini, akses sementara hanya akan diberikan ke tampilan web utama. Pemindahan domain untuk frontend juga akan dilakukan.
+
+6. Kewajiban Pihak Kami: Pihak kami mengambil data dengan menghormati ketentuan yang berlaku bagi tiap penyedia lowongan. Jika terdapat ketidaksesuaian, mungkin karena ketentuan penyedia yang telah berubah atau karena kelalaian kami. Mohon jangan segan untuk menghubungi kami terlebih dahulu terkait hal tersebut.
+
+7. Terminasi: Jika melanggar ketentuan ini, Quire dapat membatalkan lisensi dan meminta untuk menghapus semua salinan Perangkat Lunak.
+
+8. Hukum yang Berlaku: Lisensi ini diatur oleh hukum Indonesia.
+
+9. Persetujuan: Dengan menggunakan Perangkat Lunak ini, menyetujui persyaratan dan ketentuan lisensi ini.
+
+10. Hak Cipta: Hak cipta © 2024 Quire. Semua hak dilindungi. Pemberitahuan hak cipta ini harus disertakan dalam semua salinan atau bagian penting dari Perangkat Lunak.
+
+11. Penolakan Garansi: PERANGKAT LUNAK INI DISEDIAKAN "SEBAGAIMANA ADANYA", TANPA JAMINAN APA PUN, BAIK TERSIRAT MAUPUN TEGAS, TERMASUK TAPI TIDAK TERBATAS PADA JAMINAN DAPAT DIPERDAGANGKAN, KESESUAIAN UNTUK TUJUAN TERTENTU, DAN TIDAK MELANGGAR. DALAM KEADAAN APAPUN, PENULIS ATAU PEMEGANG HAK CIPTA TIDAK DAPAT DITUNTUT ATAS KLAIM, KERUSAKAN ATAU KEWAJIBAN LAINNYA, BAIK DALAM TINDAKAN KONTRAK, PELANGGARAN ATAU LAINNYA, YANG TIMBUL DARI, DI LUAR ATAU SEHUBUNGAN DENGAN PERANGKAT LUNAK ATAU PENGGUNAAN ATAU PENDEALAN LAINNYA DALAM PERANGKAT LUNAK.
