@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 
 export default async function Predictions(prompt: any) {
-  console.log(prompt.prompt);
   const res = await fetch(
     "https://quire-job-recommender-6mcqyfdvaa-et.a.run.app/predict",
     {

@@ -10,92 +10,38 @@ import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 async function getJobs(params: any) {
-  const res = await fetch('http://localhost:8080/api/job',{
-    method: 'POST',
+  const res = await fetch("http://localhost:8080/api/job", {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ search: params }),
-    cache: 'no-store',
-  })
- 
+    cache: "no-store",
+  });
+
   if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    throw new Error("Failed to fetch data");
   }
- 
-  return res.json()
+
+  return res.json();
 }
 
-const jobDetails = [
-  {
-    id: 1,
-    image_url:
-      "https://www.grand-indonesia.com/wp-content/uploads/2023/07/KOPI-KENANGAN_LOGO-2020.png",
-    title: "Barista",
-    poster: "Kopi Kenangan",
-    location: "Jakarta, Indonesia",
-    short_detail: "Menyajikan kopi berkualitas tinggi untuk pelanggan.",
-    type: "Penuh Waktu",
-    posttime: "3 Jam yang lalu",
-    link: "https://kopikenangan.com/karir",
-    description:
-      "Sebagai Barista di Kopi Kenangan, Anda akan bertanggung jawab untuk menyajikan kopi berkualitas tinggi dan memberikan layanan terbaik kepada pelanggan. Kami mencari individu yang antusias dan berdedikasi.",
-  },
-  {
-    id: 2,
-    image_url: "https://logowik.com/content/uploads/images/280_starbucks.jpg",
-    title: "Barista",
-    poster: "Starbucks Indonesia",
-    location: "Bandung, Indonesia",
-    short_detail: "Membuat dan menyajikan minuman kopi dengan standar tinggi.",
-    type: "Kontrak",
-    posttime: "4 Jam yang lalu",
-    link: "https://starbucks.co.id/karir",
-    description:
-      "Kami mencari Barista yang berpengalaman untuk bergabung dengan tim kami di Starbucks Indonesia. Anda akan bertanggung jawab untuk membuat dan menyajikan minuman kopi dengan standar tinggi serta memberikan layanan pelanggan yang luar biasa.",
-  },
-  {
-    id: 3,
-    image_url:
-      "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_809,h_500/https://www.theematicmall.com/wp-content/uploads/2016/05/logo-janji-jiwa.jpg",
-    title: "Barista",
-    poster: "Janji Jiwa",
-    location: "Surabaya, Indonesia",
-    short_detail:
-      "Menyediakan kopi dan minuman lainnya dengan cepat dan ramah.",
-    type: "Penuh Waktu",
-    posttime: "2 Hari yang lalu",
-    link: "https://janjijiwa.com/karir",
-    description:
-      "Bergabunglah dengan tim Janji Jiwa sebagai Barista. Tanggung jawab Anda termasuk menyajikan kopi dan minuman lainnya dengan cepat dan ramah. Kami mencari individu yang memiliki semangat dan antusiasme dalam pelayanan pelanggan.",
-  },
-  {
-    id: 4,
-    image_url: "https://bigmall.co.id/wp-content/uploads/2023/05/excelso.jpg",
-    title: "Barista",
-    poster: "Excelso",
-    location: "Medan, Indonesia",
-    short_detail: "Mengoperasikan mesin kopi dan melayani pelanggan.",
-    type: "Penuh Waktu",
-    posttime: "1 Minggu yang lalu",
-    link: "https://excelso-coffee.com/karir",
-    description:
-      "Excelso sedang mencari Barista yang berpengalaman untuk bergabung dengan tim kami. Anda akan mengoperasikan mesin kopi dan melayani pelanggan dengan profesionalisme dan keahlian tinggi.",
-  },
-  {
-    id: 5,
-    image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnhKUDxpDRyUKvYqHN58KB1A6WYZWnwUdisQ&s",
-    title: "Barista",
-    poster: "Fore Coffee",
-    location: "Yogyakarta, Indonesia",
-    short_detail: "Membuat dan menyajikan berbagai macam minuman kopi.",
-    type: "Penuh Waktu",
-    posttime: "5 Hari yang lalu",
-    link: "https://fore.coffee/karir",
-    description:
-      "Sebagai Barista di Fore Coffee, Anda akan membuat dan menyajikan berbagai macam minuman kopi. Kami mencari seseorang yang kreatif dan memiliki hasrat terhadap kopi untuk bergabung dengan tim kami.",
-  },
-];
+async function getJobDetails(params: any) {
+  const res = await fetch("http://localhost:8080/api/job/detail", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ search: params }),
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
 
 function JobCard({
   jobID,
@@ -104,6 +50,7 @@ function JobCard({
   company,
   posttime,
   source,
+  url,
   isLiked,
   isSaved,
   jobClickedID,
@@ -154,11 +101,17 @@ function JobCard({
 }
 
 async function JobCards({ params, jobClickedID }: any) {
-  const data = await getJobs(params)
+  const data = await getJobs(params);
 
-  const jobs = data.data.lowongan
+  const jobs = data.data.lowongan;
 
   const totalJobs = jobs.length;
+
+  function removePartFromUrl(url: any) {
+    const partToRemove = "https://www.lokersemar.id/lowongan/";
+    url = url.replace(partToRemove, "");
+    return url;
+  }
   return (
     <div className="space-y-4">
       <div>
@@ -167,7 +120,14 @@ async function JobCards({ params, jobClickedID }: any) {
       <div className="space-y-4">
         {jobs.map((job: any) => (
           <Link
-            href={`/jobs/${params}?job_id=${job.id}`}
+            // href={{
+            //   pathname:`/jobs/${params}?job=${removePartFromUrl(job.url)}`},
+            //   query: { name: 'test' },
+            // }}
+            href={{
+              pathname: `/jobs/${params}`,
+              query: { job: `${removePartFromUrl(job.url)}` },
+            }}
             key={job.id}
             scroll={false}
           >
@@ -181,6 +141,7 @@ async function JobCards({ params, jobClickedID }: any) {
               // isSaved={job.isSaved}
               jobID={job.id}
               jobClickedID={jobClickedID}
+              url={job.url}
             />
           </Link>
         ))}
@@ -221,10 +182,24 @@ function CVStitch() {
   );
 }
 
-
-function JobDetails({ id }: any) {
-  const job = jobDetails.find((job) => job.id === Number(id));
-
+async function JobDetails({ id }: any) {
+  if (id == "") {
+    return (
+      <div className="bg-gray-200 rounded-xl shadow-xl w-full">
+        <div className="flex p-8 items-start space-x-4">
+          <div>
+            <IoMdArrowRoundBack className="text-2xl" />
+          </div>
+          <div className=" space-y-4">
+            <h4 className="text-2xl font-bold">Pilih lowongan kerja</h4>
+            <p>Detail lowongan akan ditampilkan disini</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  const data = await getJobDetails(id);
+  const job = data.data;
   if (!job) {
     return (
       <div className="bg-gray-200 rounded-xl shadow-xl w-full">
@@ -240,6 +215,7 @@ function JobDetails({ id }: any) {
       </div>
     );
   }
+
   return (
     <div className="grid shrink bg-background rounded-xl shadow-xl w-full">
       <div className="p-8 space-y-8">
@@ -252,35 +228,35 @@ function JobDetails({ id }: any) {
           <TabsContent value="detail" className="space-y-4">
             <div className="space-y-4">
               <div className="relative bg-background shadow-xl rounded-xl w-40 aspect-square">
-              <Image
-                src={job.image_url}
-                alt="img"
-                layout="fill"
-                objectFit="cover"
-                className="aspect-square rounded-xl"
-                loading="lazy"
-                draggable={false}
-              />
-            </div>
+                <Image
+                  src={job.image_url}
+                  alt="img"
+                  layout="fill"
+                  objectFit="cover"
+                  className="aspect-square rounded-xl"
+                  loading="lazy"
+                  draggable={false}
+                />
+              </div>
               <div>
                 <h3 className="font-semibold text-2xl">{job.title}</h3>
-                <p>{job.poster}</p>
+                <p>{job.company}</p>
               </div>
               <div>
                 <p>{job.location}</p>
-                <p>{job.short_detail}</p>
+                {/* <p>{job.short_detail}</p> */}
                 <p>{job.type}</p>
               </div>
               <p className="text-sm">{job.posttime}</p>
               <div className="space-x-2">
-                <Link href={job.link}>
+                <Link href={job.url} target="_blank">
                   <Button>Buka</Button>
                 </Link>
                 <Button variant={"outline"}>Simpan</Button>
               </div>
               <div>
                 <h4 className="font-semibold">Deskripsi</h4>
-                <p>{job.description}</p>
+                <div dangerouslySetInnerHTML={{ __html: job.description }} />
               </div>
             </div>
           </TabsContent>
