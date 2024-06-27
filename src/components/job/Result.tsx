@@ -267,7 +267,7 @@ async function JobDetails({ id }: any) {
             <CVStitch />
           </TabsContent>
         </Tabs>
-        <div className="p-8 shadow-xl rounded-xl border-2 space-y-8">
+        <div className="p-8 shadow-xl rounded-xl space-y-8">
           <CourseCards title={"Course Skill Up relevan"} />
           {/* <CourseCards title={"Rekomendasi Course"} /> */}
         </div>
