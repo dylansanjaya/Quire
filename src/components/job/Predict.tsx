@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 export default async function Predictions(prompt: any) {
   const res = await fetch(
-    "https://quire-job-recommender-6mcqyfdvaa-et.a.run.app/predict",
+    `${process.env.QUIRE_AI}/predict`,
     {
       method: "POST",
       headers: {
