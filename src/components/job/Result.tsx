@@ -10,7 +10,7 @@ import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 async function getJobs(params: any) {
-  const res = await fetch("http://localhost:8080/api/job", {
+  const res = await fetch(`${process.env.QUIRE_URL}/api/job`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +27,7 @@ async function getJobs(params: any) {
 }
 
 async function getJobDetails(params: any) {
-  const res = await fetch("http://localhost:8080/api/job/detail", {
+  const res = await fetch(`${process.env.QUIRE_URL}/api/job/detail`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

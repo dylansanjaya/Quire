@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Input } from "../ui/input";
 import { MdArrowOutward } from "react-icons/md";
 import { SmallButton } from "../ui/small_button";
