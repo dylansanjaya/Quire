@@ -300,10 +300,9 @@ export default function Home() {
     <div className="w-full h-screen">
       <Masthead />
       <ServiceSection />
-=========
-      <AboutSection />
-      <ServiceSection />\{" "}
->>>>>>>>> Temporary merge branch 2
+      <About />
+      <Team />
+      <Footer />
     </div>
   );
 }
