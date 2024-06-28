@@ -1,10 +1,11 @@
 import Result from "@/components/job/Result";
 
 export default function JobSearchPage({ params, searchParams }: any) {
-  const jobId = searchParams.job_id || 0;
+  const job = searchParams.job || "";
+
   return (
     <div>
-      <Result params={params.search} searchParams={jobId} />
+      <Result params={params.search} searchParams={job} />
     </div>
   );
 }

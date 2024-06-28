@@ -6,138 +6,51 @@ import { Input } from "../ui/input";
 import CourseCards from "../skill-up/Courses";
 import ChatBot from "./Chat";
 import Image from "next/image";
-import defaultImage from "P/assets/img/logo.png";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
-const jobs = [
-  {
-    id: 1,
-    image_url: "default",
-    title: "Software Engineer",
-    poster: "Google LLC",
-    source: "Indeed",
-    posttime: "3 Hours ago",
-    isLiked: false,
-    isSaved: true,
-  },
-  {
-    id: 2,
-    image_url: "default",
-    title: "Graphic Designer",
-    poster: "Freelance",
-    source: "Dribbble",
-    posttime: "4 Hours ago",
-    isLiked: true,
-    isSaved: false,
-  },
-  {
-    id: 3,
-    image_url: "default",
-    title: "Data Scientist",
-    poster: "Facebook Inc.",
-    source: "LinkedIn",
-    posttime: "2 Days ago",
-    isLiked: false,
-    isSaved: true,
-  },
-  {
-    id: 4,
-    image_url: "default",
-    title: "Product Manager",
-    poster: "Amazon",
-    source: "Glassdoor",
-    posttime: "1 Week ago",
-    isLiked: true,
-    isSaved: false,
-  },
-  {
-    id: 5,
-    image_url: "default",
-    title: "UI/UX Designer",
-    poster: "Microsoft",
-    source: "Behance",
-    posttime: "5 Days ago",
-    isLiked: false,
-    isSaved: true,
-  },
-];
+async function getJobs(params: any) {
+  const res = await fetch(`${process.env.QUIRE_URL}/api/job`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ search: params }),
+    cache: "no-store",
+  });
 
-const jobDetails = [
-  {
-    id: 1,
-    image_url: "default",
-    title: "Software Engineer",
-    poster: "Google LLC",
-    location: "Mountain View, CA",
-    short_detail: "Develop scalable web applications.",
-    type: "Full-time",
-    posttime: "3 Hours ago",
-    link: "https://google.com/careers",
-    description:
-      "As a Software Engineer at Google, you will be working on cutting-edge technologies and developing scalable web applications to enhance user experience.",
-  },
-  {
-    id: 2,
-    image_url: "default",
-    title: "Graphic Designer",
-    poster: "Freelance",
-    location: "Remote",
-    short_detail: "Create stunning graphics for various clients.",
-    type: "Contract",
-    posttime: "4 Hours ago",
-    link: "https://dribbble.com/freelance-jobs",
-    description:
-      "We are looking for a creative Graphic Designer to work on multiple projects for our clients. You should have a strong portfolio and experience in various design tools.",
-  },
-  {
-    id: 3,
-    image_url: "default",
-    title: "Data Scientist",
-    poster: "Facebook Inc.",
-    location: "Menlo Park, CA",
-    short_detail: "Analyze large datasets to derive insights.",
-    type: "Full-time",
-    posttime: "2 Days ago",
-    link: "https://facebook.com/careers",
-    description:
-      "Join our Data Science team to analyze and interpret complex data sets, derive actionable insights, and contribute to our data-driven culture.",
-  },
-  {
-    id: 4,
-    image_url: "default",
-    title: "Product Manager",
-    poster: "Amazon",
-    location: "Seattle, WA",
-    short_detail: "Lead the development of new products.",
-    type: "Full-time",
-    posttime: "1 Week ago",
-    link: "https://amazon.jobs",
-    description:
-      "As a Product Manager at Amazon, you will be responsible for guiding the development of new products from concept to launch. You will work with cross-functional teams to ensure success.",
-  },
-  {
-    id: 5,
-    image_url: "default",
-    title: "UI/UX Designer",
-    poster: "Microsoft",
-    location: "Redmond, WA",
-    short_detail: "Design intuitive user interfaces.",
-    type: "Full-time",
-    posttime: "5 Days ago",
-    link: "https://careers.microsoft.com",
-    description:
-      "We are seeking a talented UI/UX Designer to create user-friendly interfaces for our software products. You will collaborate with developers and product managers to bring designs to life.",
-  },
-];
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+async function getJobDetails(params: any) {
+  const res = await fetch(`${process.env.QUIRE_URL}/api/job/detail`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ search: params }),
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
 
 function JobCard({
   jobID,
   image_url,
   title,
-  poster,
+  company,
   posttime,
   source,
+  url,
   isLiked,
   isSaved,
   jobClickedID,
@@ -157,11 +70,13 @@ function JobCard({
       <div className="flex h-full p-4 justify-between">
         <div className="Content grid space-y-2">
           <div>
-            <div className="bg-background shadow-xl rounded-xl w-20 aspect-square">
+            <div className="relative bg-background shadow-xl rounded-xl w-20 aspect-square">
               <Image
-                src={defaultImage}
+                src={image_url}
                 alt="img"
-                className="w-40"
+                layout="fill"
+                objectFit="cover"
+                className="aspect-square rounded-xl"
                 loading="lazy"
                 draggable={false}
               />
@@ -169,7 +84,7 @@ function JobCard({
           </div>
           <div>
             <h5 className="font-semibold">{title}</h5>
-            <p className="text-sm">{poster}</p>
+            <p className="text-sm">{company}</p>
           </div>
 
           <p className="self-end text-sm">
@@ -185,30 +100,48 @@ function JobCard({
   );
 }
 
-function JobCards({ params, jobClickedID }: any) {
+async function JobCards({ params, jobClickedID }: any) {
+  const data = await getJobs(params);
+
+  const jobs = data.data.lowongan;
+
   const totalJobs = jobs.length;
+
+  function removePartFromUrl(url: any) {
+    const partToRemove = "https://www.lokersemar.id/lowongan/";
+    url = url.replace(partToRemove, "");
+    return url;
+  }
   return (
     <div className="space-y-4">
       <div>
         <p className="text-sm">{totalJobs} Lowongan</p>
       </div>
       <div className="space-y-4">
-        {jobs.map((job) => (
+        {jobs.map((job: any) => (
           <Link
-            href={`/jobs/${params}?job_id=${job.id}`}
+            // href={{
+            //   pathname:`/jobs/${params}?job=${removePartFromUrl(job.url)}`},
+            //   query: { name: 'test' },
+            // }}
+            href={{
+              pathname: `/jobs/${params}`,
+              query: { job: `${removePartFromUrl(job.url)}` },
+            }}
             key={job.id}
             scroll={false}
           >
             <JobCard
               image_url={job.image_url}
               title={job.title}
-              poster={job.poster}
-              source={job.source}
+              company={job.company}
+              source={"semarloker"}
               posttime={job.posttime}
-              isLiked={job.isLiked}
-              isSaved={job.isSaved}
+              // isLiked={job.isLiked}
+              // isSaved={job.isSaved}
               jobID={job.id}
               jobClickedID={jobClickedID}
+              url={job.url}
             />
           </Link>
         ))}
@@ -249,49 +182,24 @@ function CVStitch() {
   );
 }
 
-// function JobDetail({ id }: any) {
-//   const job = jobDetails.find((job) => job.id === Number(id));
-
-//   return (
-//     <div className="space-y-4">
-//       <div className="Image">
-//         <div className="bg-background shadow-xl rounded-xl w-32 aspect-square">
-//           <Image
-//             src={defaultImage}
-//             alt="img"
-//             className="w-40"
-//             loading="lazy"
-//             draggable={false}
-//           />
-//         </div>
-//       </div>
-//       <div>
-//         <h3 className="font-semibold text-2xl">{job.title}</h3>
-//         <p>{job.poster}</p>
-//       </div>
-//       <div>
-//         <p>{job.location}</p>
-//         <p>{job.short_detail}</p>
-//         <p>{job.type}</p>
-//       </div>
-//       <p className="text-sm">{job.posttime}</p>
-//       <div className="space-x-2">
-//         <Link href={job.link}>
-//           <Button>Buka</Button>
-//         </Link>
-//         <Button variant={"outline"}>Simpan</Button>
-//       </div>
-//       <div>
-//         <h4 className="font-semibold">Deskripsi</h4>
-//         <p>{job.description}</p>
-//       </div>
-//     </div>
-//   );
-// }
-
-function JobDetails({ id }: any) {
-  const job = jobDetails.find((job) => job.id === Number(id));
-
+async function JobDetails({ id }: any) {
+  if (id == "") {
+    return (
+      <div className="bg-gray-200 rounded-xl shadow-xl w-full">
+        <div className="flex p-8 items-start space-x-4">
+          <div>
+            <IoMdArrowRoundBack className="text-2xl" />
+          </div>
+          <div className=" space-y-4">
+            <h4 className="text-2xl font-bold">Pilih lowongan kerja</h4>
+            <p>Detail lowongan akan ditampilkan disini</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  const data = await getJobDetails(id);
+  const job = data.data;
   if (!job) {
     return (
       <div className="bg-gray-200 rounded-xl shadow-xl w-full">
@@ -307,6 +215,7 @@ function JobDetails({ id }: any) {
       </div>
     );
   }
+
   return (
     <div className="grid shrink bg-background rounded-xl shadow-xl w-full">
       <div className="p-8 space-y-8">
@@ -317,38 +226,37 @@ function JobDetails({ id }: any) {
             <TabsTrigger value="cv">CV Stitch</TabsTrigger>
           </TabsList>
           <TabsContent value="detail" className="space-y-4">
-            {/* <JobDetail id={id} /> */}
             <div className="space-y-4">
-              <div className="Image">
-                <div className="bg-background shadow-xl rounded-xl w-32 aspect-square">
-                  <Image
-                    src={defaultImage}
-                    alt="img"
-                    className="w-40"
-                    loading="lazy"
-                    draggable={false}
-                  />
-                </div>
+              <div className="relative bg-background shadow-xl rounded-xl w-40 aspect-square">
+                <Image
+                  src={job.image_url}
+                  alt="img"
+                  layout="fill"
+                  objectFit="cover"
+                  className="aspect-square rounded-xl"
+                  loading="lazy"
+                  draggable={false}
+                />
               </div>
               <div>
                 <h3 className="font-semibold text-2xl">{job.title}</h3>
-                <p>{job.poster}</p>
+                <p>{job.company}</p>
               </div>
               <div>
                 <p>{job.location}</p>
-                <p>{job.short_detail}</p>
+                {/* <p>{job.short_detail}</p> */}
                 <p>{job.type}</p>
               </div>
               <p className="text-sm">{job.posttime}</p>
               <div className="space-x-2">
-                <Link href={job.link}>
+                <Link href={job.url} target="_blank">
                   <Button>Buka</Button>
                 </Link>
                 <Button variant={"outline"}>Simpan</Button>
               </div>
               <div>
                 <h4 className="font-semibold">Deskripsi</h4>
-                <p>{job.description}</p>
+                <div dangerouslySetInnerHTML={{ __html: job.description }} />
               </div>
             </div>
           </TabsContent>
@@ -359,9 +267,9 @@ function JobDetails({ id }: any) {
             <CVStitch />
           </TabsContent>
         </Tabs>
-        <div className="p-8 shadow-xl rounded-xl border-2 space-y-8">
+        <div className="p-8 shadow-xl rounded-xl space-y-8">
           <CourseCards title={"Course Skill Up relevan"} />
-          <CourseCards title={"Rekomendasi Course"} />
+          {/* <CourseCards title={"Rekomendasi Course"} /> */}
         </div>
       </div>
     </div>
