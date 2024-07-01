@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import JobshareIcon from "/public/assets/icon/job-share.svg";
 import AiIcon from "/public/assets/icon/ai.svg";
 import SkillIcon from "/public/assets/icon/skill.svg";
@@ -30,9 +31,9 @@ export default function Home() {
             mengenal lebih jauh preferensi dan pekerjaan yang relevan dengan
             dirimu
           </span>
-          <button className="bg-primary w-fit px-3 md:px-6 py-1 md:py-4 rounded-md font-medium text-sm md:text-xl">
+          <Link href={"/jobs"} className="bg-primary w-fit px-3 md:px-6 py-1 md:py-4 rounded-md font-medium text-sm md:text-xl">
             Cari Pekerjaan Incaranmu
-          </button>
+          </Link>
         </div>
       </div>
     );
