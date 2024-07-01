@@ -12,7 +12,6 @@ export default async function Predictions(prompt: any) {
     cache: "no-store",
   });
   const data = await res.json();
-  console.log(data);
 
   function converter(similarities: number) {
     let convertDecimal = similarities * 100;
@@ -23,7 +22,7 @@ export default async function Predictions(prompt: any) {
     return `${firstFourDigits}%`;
   }
 
-  const numbers = Array.from({ length: 3 }, (_, i) => i + 1);
+  const numbers = Array.from({ length: 4 }, (_, i) => i);
 
   return (
     <div className="grid space-y-8 justify-items-center">
@@ -41,27 +40,31 @@ export default async function Predictions(prompt: any) {
         </div>
       </div>
       <div className="font-bold">Rekomendasi pekerjaan</div>
-      {numbers.map((number) => (
-        <div
-          key={number}
-          className="bg-background rounded-xl shadow-xl p-8 w-1/2"
-        >
-          <div className="grid w-full justify-items-center space-y-4">
-            <div className="text-5xl font-bold">
-              {converter(data.recommendations[number].similarity)}
+      <div className="grid grid-cols-2 gap-4 w-1/2">
+        {numbers.map((number) => (
+          <div
+            key={number}
+            className={`bg-background rounded-xl shadow-xl p-8 w-full ${parseFloat(converter(data.recommendations[number].similarity)) === 0 ? "hidden" : "block"}`}
+          >
+            <div className="grid w-full justify-items-center space-y-4">
+              <div className="text-5xl font-bold">
+                {converter(data.recommendations[number].similarity)}
+              </div>
+              <Progress
+                value={parseFloat(
+                  converter(data.recommendations[number].similarity)
+                )}
+              />
+              <div className="text-4xl font-bold">
+                {data.recommendations[number].label}
+              </div>
+              <Link href={`${data.recommendations[number].label}`}>
+                <Button>Cari lowongan</Button>
+              </Link>
             </div>
-            <Progress
-              value={parseFloat(converter(data.recommendations[number].similarity))}
-            />
-            <div className="text-4xl font-bold">
-              {data.recommendations[number].label}
-            </div>
-            <Link href={`${data.recommendations[number].label}`}>
-              <Button>Cari lowongan</Button>
-            </Link>
           </div>
-        </div>
-      ))} 
+        ))}
+      </div>
     </div>
   );
 }
