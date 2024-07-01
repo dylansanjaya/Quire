@@ -54,7 +54,7 @@ export default function Home() {
       {
         icon: SkillIcon,
         title: "Skill Up",
-        description: "Dengan konten e-course kami, Anda dapat belajar dan meningkatkan keterampilan Anda, membuka lebih banyak peluang di dunia kerja",
+        description: "Dengan konten e-course, Anda dapat belajar dan meningkatkan keterampilan Anda, membuka lebih banyak peluang di dunia kerja",
       },
       {
         icon: CvIcon,
