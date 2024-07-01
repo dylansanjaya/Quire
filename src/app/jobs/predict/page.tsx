@@ -1,8 +1,11 @@
 import Predictions from "@/components/job/Predict";
+import { Suspense } from 'react'
 
 export default function AIPrediction({searchParams}: any){
   const prompt = searchParams.prompt || "";
   return(
-    <Predictions prompt={prompt}/>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Predictions prompt={prompt}/>
+    </Suspense>
   )
 }
