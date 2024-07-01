@@ -16,7 +16,7 @@ export default function Home() {
 
   function Masthead() {
     return (
-      <div className="w-full h-[70%] md:h-screen flex text-white relative">
+      <div className="w-full h-[70%] sm:h-[400px] md:h-screen flex text-white relative">
         <Image
           src={"/assets/img/masthead.png"}
           fill
@@ -297,7 +297,7 @@ export default function Home() {
   }
   
   return (
-    <div className="w-full h-screen">
+    <div className="w-screen h-screen">
       <Masthead />
       <ServiceSection />
       <About />
