@@ -44,7 +44,7 @@ export default function Navbar() {
               </Link>
             );
           })}
-          <Button className="bg-background hover:bg-gray-200 mx-4 px-12">
+          <Button className="bg-background hover:bg-gray-200 mx-2 px-6 md:mx-4 md:px-12">
             <Link
               href="/login"
               className={`text-foreground ${

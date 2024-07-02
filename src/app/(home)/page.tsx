@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import JobshareIcon from "/public/assets/icon/job-share.svg";
 import AiIcon from "/public/assets/icon/ai.svg";
 import SkillIcon from "/public/assets/icon/skill.svg";
@@ -16,7 +17,7 @@ export default function Home() {
 
   function Masthead() {
     return (
-      <div className="w-full h-[70%] md:h-screen flex text-white relative">
+      <div className="w-full h-[70%] sm:h-[400px] md:h-screen flex text-white relative">
         <Image
           src={"/assets/img/masthead.png"}
           fill
@@ -30,9 +31,9 @@ export default function Home() {
             mengenal lebih jauh preferensi dan pekerjaan yang relevan dengan
             dirimu
           </span>
-          <button className="bg-primary w-fit px-3 md:px-6 py-1 md:py-4 rounded-md font-medium text-sm md:text-xl">
+          <Link href={"/jobs"} className="bg-primary w-fit px-3 md:px-6 py-1 md:py-4 rounded-md font-medium text-sm md:text-xl">
             Cari Pekerjaan Incaranmu
-          </button>
+          </Link>
         </div>
       </div>
     );
@@ -53,7 +54,7 @@ export default function Home() {
       {
         icon: SkillIcon,
         title: "Skill Up",
-        description: "Dengan konten e-course kami, Anda dapat belajar dan meningkatkan keterampilan Anda, membuka lebih banyak peluang di dunia kerja",
+        description: "Dengan konten e-course, Anda dapat belajar dan meningkatkan keterampilan Anda, membuka lebih banyak peluang di dunia kerja",
       },
       {
         icon: CvIcon,
@@ -297,7 +298,7 @@ export default function Home() {
   }
   
   return (
-    <div className="w-full h-screen">
+    <div className="w-screen h-screen">
       <Masthead />
       <ServiceSection />
       <About />
