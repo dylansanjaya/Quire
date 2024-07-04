@@ -54,37 +54,39 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex  h-24 w-[96%] fixed z-50 top-[2%] mx-[2%]  items-center">
-        <div className="p-8 w-full hidden md:block rounded-xl bg-[#4945C4] shadow-2xl">
-          <div className="flex justify-between items-center">
-            <div className="Logo font-bold text-xl text-background relative w-16 h-9 md:w-[88px] md:h-12">
-              <Image src={"/assets/img/logo-font.png"} alt="logo font" fill />
-            </div>
-            <div className="Navigation">
-              {links.map((link, index) => {
-                const isActive = pathname.endsWith(link.href);
-                return (
+      <div className="flex ">
+        <div className="h-24 w-[96%] fixed z-50 top-[2%] mx-[2%]  items-center hidden md:block">
+          <div className="p-8 w-full  rounded-xl bg-[#4945C4] shadow-2xl">
+            <div className="flex justify-between items-center">
+              <div className="Logo font-bold text-xl text-background relative w-16 h-9 md:w-[88px] md:h-12">
+                <Image src={"/assets/img/logo-font.png"} alt="logo font" fill />
+              </div>
+              <div className="Navigation">
+                {links.map((link, index) => {
+                  const isActive = pathname.endsWith(link.href);
+                  return (
+                    <Link
+                      href={link.href}
+                      key={index}
+                      className={`Links text-background mx-4 ${
+                        isActive ? "font-bold" : "font-normal"
+                      }`}
+                    >
+                      {link.title}
+                    </Link>
+                  );
+                })}
+                <Button className="bg-background hover:bg-gray-200 mx-4 px-12">
                   <Link
-                    href={link.href}
-                    key={index}
-                    className={`Links text-background mx-4 ${
-                      isActive ? "font-bold" : "font-normal"
+                    href="/login"
+                    className={`text-foreground ${
+                      isActives ? "font-bold " : "font-normal"
                     }`}
                   >
-                    {link.title}
+                    Log in
                   </Link>
-                );
-              })}
-              <Button className="bg-background hover:bg-gray-200 mx-4 px-12">
-                <Link
-                  href="/login"
-                  className={`text-foreground ${
-                    isActives ? "font-bold " : "font-normal"
-                  }`}
-                >
-                  Log in
-                </Link>
-              </Button>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
