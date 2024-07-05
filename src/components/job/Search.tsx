@@ -33,6 +33,7 @@ export default function SearchBox() {
     //   buttonText: "Cari",
     // },
   ];
+
   return (
     <div className="rounded-xl shadow-xl bg-white">
       <div className="p-8 py-12">
@@ -47,9 +48,11 @@ export default function SearchBox() {
                 <div>Kembali</div>
               </Link>
               <TabsList>
-                <TabsTrigger value="normal">Normal</TabsTrigger>
-                <TabsTrigger value="story">Story Tell</TabsTrigger>
-                <TabsTrigger value="cv">CV Scan</TabsTrigger>
+                <Link href={"/jobs"}>
+                  <TabsTrigger value="normal">Normal</TabsTrigger>
+                  <TabsTrigger value="story">Story Tell</TabsTrigger>
+                  <TabsTrigger value="cv">CV Scan</TabsTrigger>
+                </Link>
               </TabsList>
             </div>
             {tabsData.map((Tabs) => {
@@ -79,22 +82,24 @@ export default function SearchBox() {
             })}
             <TabsContent value="cv" className="space-y-4">
               <h2 className="font-bold text-xl">Pencarian Scan CV</h2>
-              <div className="grid space-x-3">
-                <div className="w-full p-4 h-96 bg-gray-300 rounded-xl justify-self-center">
-                  <div className="grid h-full border border-1 rounded-xl p-4">
-                    <Input className="self-center" id="picture" type="file" />
+              <form className="grid gap-4">
+                <div className="grid space-x-3">
+                  <div className="w-full p-4 h-96 bg-gray-300 rounded-xl justify-self-center">
+                    <div className="grid h-full border border-1 rounded-xl p-4">
+                      <Input className="self-center" id="picture" type="file"/>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="grid">
-                <Button
-                  className="justify-self-center"
-                  disabled={true}
-                  type="button"
-                >
-                  Cari
-                </Button>
-              </div>
+                <Link href={`/jobs/predict/cv`} className="grid">
+                  <Button
+                    className="justify-self-center"
+                    // disabled={true}
+                    type="submit"
+                  >
+                    Cari
+                  </Button>
+                </Link>
+              </form>
             </TabsContent>
 
             {/* <TabsContent value="normal" className="space-y-4">
