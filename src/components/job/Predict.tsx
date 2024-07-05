@@ -47,15 +47,15 @@ export default async function Predictions(prompt: any) {
             className={`bg-background rounded-xl shadow-xl p-8 w-full ${parseFloat(converter(data.recommendations[number].similarity)) === 0 ? "hidden" : "block"}`}
           >
             <div className="grid w-full justify-items-center space-y-4">
-              <div className="text-5xl font-bold">
+              {/* <div className="text-5xl font-bold">
                 {converter(data.recommendations[number].similarity)}
               </div>
               <Progress
                 value={parseFloat(
                   converter(data.recommendations[number].similarity)
                 )}
-              />
-              <div className="text-4xl font-bold">
+              /> */}
+              <div className="text-4xl font-bold text-center">
                 {data.recommendations[number].label}
               </div>
               <Link href={`${data.recommendations[number].label}`}>
