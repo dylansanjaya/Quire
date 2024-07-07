@@ -1,18 +1,14 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
 import { SmallButton } from "../ui/small_button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "../ui/input";
-import CourseCards from "../skill-up/Courses";
-import ChatBot from "./Chat";
 import Image from "next/image";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { Suspense } from "react";
 import JobDetails from "./JobDetails";
 
 async function getJobs(params: any) {
-  const res = await fetch(`${process.env.QUIRE_URL}/api/job`, {
+  const url = `${process.env.QUIRE_URL}/api/job`
+  const url_test = `http://localhost:8080/api/job`
+  const res = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -49,7 +45,7 @@ function JobCard({
   }
   return (
     <div
-      className={`bg-background shadow-xl rounded-xl w-96 my-4 hover:border hover:border-[#4945C4] aspect-video ${
+      className={`bg-background shadow-xl rounded-xl w-96 my-4 hover:border hover:border-[#4945C4] ${
         isClicked ? "border border-[#4945C4]" : "bg-background"
       }`}
     >
@@ -92,12 +88,6 @@ async function JobCards({ params, jobClickedID }: any) {
   const jobs = data.data.lowongan;
 
   const totalJobs = jobs.length;
-
-  function removePartFromUrl(url: any) {
-    const partToRemove = "https://www.lokersemar.id/lowongan/";
-    url = url.replace(partToRemove, "");
-    return url;
-  }
   return (
     <div className="space-y-4">
       <div>
@@ -106,13 +96,9 @@ async function JobCards({ params, jobClickedID }: any) {
       <div className="space-y-4">
         {jobs.map((job: any) => (
           <Link
-            // href={{
-            //   pathname:`/jobs/${params}?job=${removePartFromUrl(job.url)}`},
-            //   query: { name: 'test' },
-            // }}
             href={{
               pathname: `/jobs/${params}`,
-              query: { job: `${removePartFromUrl(job.url)}` },
+              query: { job: `${job.url}` },
             }}
             key={job.id}
             scroll={false}
@@ -121,11 +107,11 @@ async function JobCards({ params, jobClickedID }: any) {
               image_url={job.image_url}
               title={job.title}
               company={job.company}
-              source={"semarloker"}
+              source={job.source}
               posttime={job.posttime}
               // isLiked={job.isLiked}
               // isSaved={job.isSaved}
-              jobID={job.id}
+              jobID={job.url}
               jobClickedID={jobClickedID}
               url={job.url}
             />
@@ -152,6 +138,7 @@ async function JobCards({ params, jobClickedID }: any) {
 
 
 export default function Result({ params, searchParams }: any) {
+  console.log(params);
   return (
     <div className="flex space-x-4">
       <JobCards params={params} jobClickedID={searchParams} />

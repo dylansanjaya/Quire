@@ -6,10 +6,34 @@ import { Button } from "./../ui/button";
 import Link from "next/link";
 import { useState } from "react";
 import { IoChevronBack } from "react-icons/io5";
-import Predictions from "./Predict";
 
 export default function SearchBox() {
   const [inputValue, setInputValue] = useState("");
+  const tabsData = [
+    {
+      value: "normal",
+      title: "Pencarian Normal",
+      placeholder: "Masukan kata kunci",
+      linkHref: `/jobs/${inputValue}`,
+      buttonText: "Cari",
+      isFileInput: false,
+    },
+    {
+      value: "story",
+      title: "Pencarian Story Tell",
+      placeholder: "Ceritakan pekerjaan impian mu",
+      linkHref: `/jobs/predict?prompt=${inputValue}`,
+      buttonText: "Cari",
+      isFileInput: false,
+    },
+    // {
+    //   value: "cv",
+    //   title: "Pencarian Scan CV",
+    //   isFileInput: true,
+    //   buttonText: "Cari",
+    // },
+  ];
+
   return (
     <div className="rounded-xl shadow-xl bg-white">
       <div className="p-8 py-12">
@@ -24,12 +48,61 @@ export default function SearchBox() {
                 <div>Kembali</div>
               </Link>
               <TabsList>
-                <TabsTrigger value="normal">Normal</TabsTrigger>
-                <TabsTrigger value="story">Story Tell</TabsTrigger>
-                <TabsTrigger value="cv">CV Scan</TabsTrigger>
+                <Link href={"/jobs"}>
+                  <TabsTrigger value="normal">Normal</TabsTrigger>
+                  <TabsTrigger value="story">Story Tell</TabsTrigger>
+                  <TabsTrigger value="cv">CV Scan</TabsTrigger>
+                </Link>
               </TabsList>
             </div>
-            <TabsContent value="normal" className="space-y-4">
+            {tabsData.map((Tabs) => {
+              return (
+                <TabsContent
+                  value={Tabs.value}
+                  className="space-y-4"
+                  key={Tabs.value}
+                >
+                  <h2 className="font-bold text-xl">{Tabs.title}</h2>
+                  <div className="md:flex gap-4 space-y-4 md:space-y-0">
+                    <Input
+                      type="text"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      placeholder={Tabs.placeholder}
+                    />
+                    <div className="flex grid-cols-2 gap-4 justify-center">
+                      <Button variant={"outline"}>Filter</Button>
+                      <Link href={`${Tabs.linkHref}`}>
+                        <Button>Cari</Button>
+                      </Link>
+                    </div>
+                  </div>
+                </TabsContent>
+              );
+            })}
+            <TabsContent value="cv" className="space-y-4">
+              <h2 className="font-bold text-xl">Pencarian Scan CV</h2>
+              <form className="grid gap-4">
+                <div className="grid space-x-3">
+                  <div className="w-full p-4 h-96 bg-gray-300 rounded-xl justify-self-center">
+                    <div className="grid h-full border border-1 rounded-xl p-4">
+                      <Input className="self-center" id="picture" type="file"/>
+                    </div>
+                  </div>
+                </div>
+                <Link href={`/jobs/predict/cv`} className="grid">
+                  <Button
+                    className="justify-self-center"
+                    // disabled={true}
+                    type="submit"
+                  >
+                    Cari
+                  </Button>
+                </Link>
+              </form>
+            </TabsContent>
+
+            {/* <TabsContent value="normal" className="space-y-4">
               <h2 className="font-bold text-xl">Pencarian Normal</h2>
               <div className="flex space-x-3">
                 <Input
@@ -40,9 +113,7 @@ export default function SearchBox() {
                 />
                 <Button variant={"outline"}>Filter</Button>
                 <Link href={`/jobs/${inputValue}`}>
-                <Button>
-                  Cari
-                </Button>
+                  <Button>Cari</Button>
                 </Link>
               </div>
             </TabsContent>
@@ -56,11 +127,7 @@ export default function SearchBox() {
                   placeholder="Ceritakan pekerjaan impian mu"
                 />
                 <Link href={`/jobs/predict?prompt=${inputValue}`}>
-                  <Button
-                    type="button"
-                  >
-                    Cari
-                  </Button>
+                  <Button type="button">Cari</Button>
                 </Link>
               </div>
             </TabsContent>
@@ -82,7 +149,7 @@ export default function SearchBox() {
                   Cari
                 </Button>
               </div>
-            </TabsContent>
+            </TabsContent> */}
           </Tabs>
         </div>
       </div>

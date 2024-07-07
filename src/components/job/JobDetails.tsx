@@ -8,12 +8,37 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import CVStitch from "./CVStitch";
 
 async function getJobDetails(params: any) {
-  const res = await fetch(`${process.env.QUIRE_URL}/api/job/detail`, {
+  function removePartFromUrl(url: any) {
+    const partToRemove1 = "https://www.lokersemar.id/lowongan/";
+    const partToRemove2 = "https://lokeradmin.net/lowongan/";
+    const partToRemove3 = "https://lokerakuntan.net/lowongan/";
+    url = url.replace(partToRemove1, "");
+    url = url.replace(partToRemove2, "");
+    url = url.replace(partToRemove3, "");
+    return url;
+  }
+
+  function extractDomain(url: string) {
+    const regex = /^(?:https?:\/\/)?(?:www\.)?([^\/]+)/i;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  }
+  
+  const slug = removePartFromUrl(params);
+  const source = extractDomain(params);
+
+  const url = `${process.env.QUIRE_URL}/api/job/detail`;
+  const url_test = `http://localhost:8080/api/job/detail`;
+  const res = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ search: params }),
+    body: JSON.stringify({
+      jobSlug: slug,
+      source: source,
+    }),
+
     cache: "no-store",
   });
 
@@ -110,10 +135,9 @@ export default async function JobDetails({ id }: any) {
             <CVStitch />
           </TabsContent>
         </Tabs>
-        <div className="p-8 shadow-xl rounded-xl space-y-8">
+        {/* <div className="p-8 shadow-xl rounded-xl space-y-8">
           <CourseCards title={"Course Skill Up relevan"} />
-          {/* <CourseCards title={"Rekomendasi Course"} /> */}
-        </div>
+        </div> */}
       </div>
     </div>
   );
