@@ -77,6 +77,18 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'lokeradmin.net',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lokerakuntan.net',
+        port: '',
+        pathname: '/**',
+      },
 
     ],
   },
