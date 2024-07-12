@@ -7,7 +7,6 @@ import CvIcon from "/public/assets/icon/cv.svg";
 import ChatIcon from "/public/assets/icon/chatbot.svg";
 import PlussIcon from "/public/assets/icon/pluss.svg";
 import { ComponentType, FunctionComponent } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
