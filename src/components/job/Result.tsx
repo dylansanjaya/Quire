@@ -1,16 +1,13 @@
 import Link from "next/link";
-import { SmallButton } from "../ui/small_button";
 import Image from "next/image";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { Suspense } from "react";
 import JobDetails from "./JobDetails";
 
 async function getJobs(params: any) {
-  const url = `${process.env.QUIRE_URL}/api/job`
-  const url_test = `http://localhost:8080/api/job`
+  const url = `https://quire-backend-6mcqyfdvaa-uc.a.run.app/api/job`;
   const res = await fetch(url, {
     method: "POST",
-    headers: {
+  headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ search: params }),
@@ -118,7 +115,7 @@ async function JobCards({ params, jobClickedID }: any) {
           </Link>
         ))}
       </div>
-      <div className="bg=background rounded-xl shadow-xl w-96">
+      {/* <div className="bg=background rounded-xl shadow-xl w-96">
         <div className="flex p-4 justify-between text-[#4945C4] items-center text-xl">
           <IoChevronBack />
           <div className="space-x-2">
@@ -130,21 +127,17 @@ async function JobCards({ params, jobClickedID }: any) {
           </div>
           <IoChevronForward />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
-
-
 
 export default function Result({ params, searchParams }: any) {
   console.log(params);
   return (
     <div className="flex space-x-4">
       <JobCards params={params} jobClickedID={searchParams} />
-      <Suspense fallback={<div>Loading...</div>}>
-        <JobDetails id={searchParams} />
-      </Suspense>
+      <JobDetails id={searchParams} />
     </div>
   );
 }

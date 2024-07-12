@@ -7,6 +7,8 @@ import CvIcon from "/public/assets/icon/cv.svg";
 import ChatIcon from "/public/assets/icon/chatbot.svg";
 import PlussIcon from "/public/assets/icon/pluss.svg";
 import { ComponentType, FunctionComponent } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   interface serviceProps {
@@ -31,8 +33,15 @@ export default function Home() {
             mengenal lebih jauh preferensi dan pekerjaan yang relevan dengan
             dirimu
           </span>
-          <Link href={"/jobs"} className="bg-primary w-fit px-3 md:px-6 py-1 md:py-4 rounded-md font-medium text-sm md:text-xl">
+          {/* <button className="bg-primary w-fit px-3 md:px-6 py-1 md:py-4 rounded-md font-medium text-sm md:text-xl">
             Cari Pekerjaan Incaranmu
+          </button> */}
+          <Link href={{
+            pathname: '/jobs'
+          }}>
+            <Button>
+              Cari Pekerjaan Incaranmu
+            </Button>
           </Link>
         </div>
       </div>

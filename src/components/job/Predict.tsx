@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { Progress } from "@/components/ui/progress";
 
 export default async function Predictions(prompt: any) {
-  const res = await fetch(`${process.env.QUIRE_AI}/predict/`, {
+  const res = await fetch(`https://quire-job-recommender-6mcqyfdvaa-et.a.run.app/predict/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,12 +28,12 @@ export default async function Predictions(prompt: any) {
     <div className="grid space-y-8 justify-items-center">
       <div className="bg-background rounded-xl shadow-xl p-8 w-1/2">
         <div className="grid w-full justify-items-center space-y-4">
-          <div>
+          <div className="text-justify">
             Berdasarkan prompt yang anda berikan, pekerjaan yang cocok dengan
             anda adalah
           </div>
-          <div className="text-4xl font-bold">{data.predicted_label}</div>
-          <p className="text-center">{data.job_description}</p>
+          <div className="text-4xl font-bold text-center">{data.predicted_label}</div>
+          <p className="text-justify">{data.job_description}</p>
           <Link href={`${data.predicted_label}`}>
             <Button>Cari lowongan</Button>
           </Link>
