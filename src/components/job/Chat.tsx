@@ -2,11 +2,13 @@ import { Input } from "../ui/input";
 import { MdArrowOutward } from "react-icons/md";
 import { SmallButton } from "../ui/small_button";
 import { IoMdSend } from "react-icons/io";
+import WorkOnProgress from "../ui/on-progress";
 
 export default function ChatBot() {
   return (
     <div className="bg-background rounded-xl shadow-xl p-8">
       <div className="grid space-y-4 min-h-96">
+        <WorkOnProgress/>
         <h3 className="text-xl font-semibold">Chat dengan lowongan</h3>
         <div className="w-full self-end">
           <div className="flex space-x-2 mb-3 justify-end">

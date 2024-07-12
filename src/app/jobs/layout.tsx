@@ -1,4 +1,4 @@
-import SearchBox from "@/components/job/Search";
+// import SearchBox from "@/components/job/Search";
 
 export default function RootLayout({
   children,
@@ -7,7 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <div className="md:mt-28 p-8 space-y-4">
-      <SearchBox />
+      {/* <SearchBox /> */}
       <div>{children}</div>
     </div>
   );

@@ -10,11 +10,13 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import WorkOnProgress from "../ui/on-progress"
 
 export function LoginForm() {
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
+        <WorkOnProgress/>
         <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>
           Masukkan alamat email anda

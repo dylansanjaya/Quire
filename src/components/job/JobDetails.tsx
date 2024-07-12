@@ -23,24 +23,25 @@ async function getJobDetails(params: any) {
     const match = url.match(regex);
     return match ? match[1] : null;
   }
-  
+
   const slug = removePartFromUrl(params);
   const source = extractDomain(params);
 
-  const url = `${process.env.QUIRE_URL}/api/job/detail`;
-  const url_test = `http://localhost:8080/api/job/detail`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      jobSlug: slug,
-      source: source,
-    }),
+  const res = await fetch(
+    "https://quire-backend-6mcqyfdvaa-uc.a.run.app/api/job/detail",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        jobSlug: slug,
+        source: source,
+      }),
 
-    cache: "no-store",
-  });
+      cache: "no-store",
+    }
+  );
 
   if (!res.ok) {
     // throw new Error("Failed to fetch data");

@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { Progress } from "@/components/ui/progress";
 
 export default async function Predictions(prompt: any) {
-  const res = await fetch(`${process.env.QUIRE_AI}/predict/`, {
+  const res = await fetch(`https://quire-job-recommender-6mcqyfdvaa-et.a.run.app/predict/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
