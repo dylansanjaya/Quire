@@ -69,23 +69,22 @@ export default function Navbar() {
                       href={link.href}
                       key={index}
                       className={`Links text-background mx-4 ${
-                        isActive ? "font-bold" : "font-normal"
+                        isActive ? "font-black" : "font-bold"
                       }`}
                     >
                       {link.title}
                     </Link>
                   );
                 })}
-                <Button className="bg-background hover:bg-gray-200 mx-4 px-12">
-                  <Link
-                    href="/login"
+                <Link href="/login">
+                  <Button variant={"secondary"}
                     className={`text-foreground ${
-                      isActives ? "font-bold " : "font-normal"
+                      isActives ? "font-black text-primary" : "font-bold"
                     }`}
                   >
-                    Log in
-                  </Link>
-                </Button>
+                    Masuk
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

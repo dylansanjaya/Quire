@@ -21,8 +21,8 @@ export default function RootLayout({
         <Navbar />
         {children}
         </body> */}
-        <Navbar />
       <body className="md:mt-36">
+        <Navbar />
         {children}
       </body>
     </html>

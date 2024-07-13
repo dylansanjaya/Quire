@@ -181,10 +181,12 @@ export default function JobDetails() {
                 <p>{job.type}</p>
               </div>
               <p className="text-sm">{job.posttime}</p>
-              <div className="space-x-2">
-                <Link href={job.url} target="_blank">
-                  <Button>Buka</Button>
-                </Link>
+              <div className="space-y-4 space-x-0 sm:space-x-4 sm:space-y-0">
+                <Button>
+                  <Link href={job.url} target="_blank">
+                    Buka
+                  </Link>
+                </Button>
                 <Button variant={"outline"}>Simpan</Button>
               </div>
               <div>

@@ -8,7 +8,7 @@ export default function JobCards({ lowongan }: { lowongan: any[] }) {
       {/* <div className="lowongan-count">
         <p className="text-sm">{lowongan.length} Lowongan</p>
       </div> */}
-      <div className="lowongan-cards bg-gray-200 overflow-y-auto h-[70vh] px-4">
+      <div className="lowongan-cards bg-gray-200 overflow-y-auto h-[35vh] lg:h-[70vh] px-4">
         {lowongan.map((lowongan: any) => (
           <Link
             href={{

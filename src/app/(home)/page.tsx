@@ -226,7 +226,7 @@ export default function Home() {
         // </div>
         // </div>
         <div className="space-y-8">
-          <div className="flex flex-col  items-start justify-center text-wrap">
+          <div className="flex flex-col  items-start justify-center text-wrap space-y-2">
             <h3 className="font-bold text-6xl text-primary pb-[2%] text-pretty ">
               Mengapa kami?
             </h3>
@@ -238,7 +238,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="flex flex-col  items-end text-right justify-center  text-pretty">
+          <div className="flex flex-col  items-end text-right justify-center  text-pretty space-y-2">
             <h3 className="font-bold text-6xl text-primary pb-[2%] text-pretty ">
               Masa depan bersama Quire
             </h3>
