@@ -21,10 +21,10 @@ export default function RootLayout({
         <Navbar />
         {children}
         </body> */}
-      <body>
         <Navbar />
+      <body className="md:mt-36">
         {children}
-        </body>
+      </body>
     </html>
   );
 }

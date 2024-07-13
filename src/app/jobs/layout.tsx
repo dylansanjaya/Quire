@@ -6,7 +6,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="md:mt-28 p-8 space-y-4">
+    <div className="px-8 space-y-4">
       {/* <SearchBox /> */}
       <div>{children}</div>
     </div>
