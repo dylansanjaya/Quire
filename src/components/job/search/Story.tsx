@@ -2,13 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import WorkOnProgress from "@/components/ui/on-progress";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Predictions from "../predict/Predict";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import LoadingAnimation from "@/components/ui/loading-animation";
-import { Textarea } from "@/components/ui/textarea";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function StorySearch() {
@@ -66,7 +63,7 @@ export default function StorySearch() {
             placeholder="Ceritakan pekerjaan impian mu"
           />
           <div className="flex grid-cols-2 gap-4 justify-center">
-            <Button variant={"outline"}>Filter</Button>
+            <Button variant={"outline"} disabled={true}>Filter</Button>
             <Button type="submit" disabled={!inputValue || isFetching}>
               {isFetching ? (
                 <div className="flex space-x-2 items-center">

@@ -24,7 +24,7 @@ export default function Predictions(prediction: any) {
 
   if (data.length === 0) {
     return (
-      <div className="flex w-full justify-start">
+      <div className="flex w-full justify-center">
 
       <Alert variant={"default"} className="max-w-96">
         <IoIosInformationCircleOutline className="text-2xl"/>
