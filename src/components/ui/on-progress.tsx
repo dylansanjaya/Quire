@@ -10,11 +10,6 @@ import {
 
 export default function WorkOnProgress(){
 return(
-  // <div>
-  //   <IoConstruct className="text 6xl"/>
-  //   <h2>Fitur ini sedang dikembangkan</h2>
-    
-  // </div>
       <Alert variant="destructive">
       <IoConstruct className="text 6xl"/>
       <AlertTitle>Peringatan!</AlertTitle>

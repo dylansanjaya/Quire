@@ -55,7 +55,7 @@ async function getJobDetails(
 
   try {
     const res = await fetch(
-      "https://quire-backend-6mcqyfdvaa-uc.a.run.app/api/job/detail",
+      "https://quire-backend-6mcqyfdvaa-et.a.run.app/api/job/detail",
       {
         method: "POST",
         headers: {
@@ -75,7 +75,6 @@ async function getJobDetails(
 
     return await res.json();
   } catch (error) {
-    console.error("Error fetching job details:", error);
     return { error: "Error fetching job details" };
   } finally {
     setLoading(false);
@@ -101,7 +100,6 @@ export default function JobDetails() {
         })
         .catch((err) => {
           setError("Error fetching job details");
-          console.error(err);
         });
     } else {
       setLoading(false);
@@ -118,13 +116,13 @@ export default function JobDetails() {
 
   if (error) {
     return (
-      <div className="bg-gray-200 rounded-xl shadow-xl w-full h-1/2">
+      <div className="flex bg-gray-200 rounded-xl shadow-xl w-full h-[70vh]">
         <div className="flex p-8 items-start space-x-4">Error: {error}</div>
       </div>
     );
   }
-
-  if (!slugQuery) {
+  
+  if (!job || !slugQuery || !(job.company)) {
     return (
       <div className="flex bg-gray-200 rounded-xl shadow-xl w-full h-[70vh]">
         <div className="flex p-8 items-start space-x-4">
@@ -139,17 +137,6 @@ export default function JobDetails() {
       </div>
     );
   }
-
-  if (!job) {
-    return (
-      <div className="bg-gray-200 rounded-xl shadow-xl w-full h-[70vh]">
-        <div className="flex p-8 items-start space-x-4">
-          Gagal menerima data
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="grid shrink bg-background rounded-xl shadow-xl w-full overflow-y-auto h-[70vh]">
       <div className="p-8 space-y-8">

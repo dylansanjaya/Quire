@@ -1,13 +1,15 @@
-import Result from "@/components/job/Result";
-import { Suspense } from 'react'
+"use client";
 
+import SearchResults from "@/components/job/components/results/Results";
+import { Suspense } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-export default function JobSearchPage({ params, searchParams }: any) {
-  const job = searchParams.job || "";
-
+export default function JobSearchPage() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Result params={params.search} searchParams={job} />
+    <Suspense
+      fallback={<AiOutlineLoading3Quarters className="animate-spin text-4xl" />}
+    >
+      <SearchResults />
     </Suspense>
   );
 }

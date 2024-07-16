@@ -133,7 +133,6 @@ async function JobCards({ params, jobClickedID }: any) {
 }
 
 export default function Result({ params, searchParams }: any) {
-  console.log(params);
   return (
     <div className="flex space-x-4">
       <JobCards params={params} jobClickedID={searchParams} />

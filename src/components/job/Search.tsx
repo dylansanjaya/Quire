@@ -21,9 +21,13 @@ export default function SearchBox() {
                 <div>Kembali</div>
               </Link>
               <TabsList>
+                <Link href={{
+                  pathname:"/jobs",
+                }}>
                 <TabsTrigger value="normal">Normal</TabsTrigger>
                 <TabsTrigger value="story">Story</TabsTrigger>
                 <TabsTrigger value="cv">CV</TabsTrigger>
+                </Link>
               </TabsList>
             </div>
             <TabsContent value="normal">

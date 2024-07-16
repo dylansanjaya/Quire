@@ -2,10 +2,11 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CourseCards from "../skill-up/Courses";
-import ChatBot from "./Chat";
 import Image from "next/image";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import CVStitch from "./CVStitch";
+import ChatBot from "../job/Chat";
+import CVStitch from "../job/CVStitch";
+
 
 async function getJobDetails(params: any) {
   function removePartFromUrl(url: any) {
