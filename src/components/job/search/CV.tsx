@@ -71,7 +71,7 @@ export default function CVSearch() {
             onChange={handleFileChange}
           />
           <div className="flex grid-cols-2 gap-4 justify-center">
-            <Button variant={"outline"} disabled={true}>Filter</Button>
+            {/* <Button variant={"outline"} disabled={true}>Filter</Button> */}
             <Button
               className="justify-self-center"
               type="submit"

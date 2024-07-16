@@ -63,7 +63,7 @@ export default function StorySearch() {
             placeholder="Ceritakan pekerjaan impian mu"
           />
           <div className="flex grid-cols-2 gap-4 justify-center">
-            <Button variant={"outline"} disabled={true}>Filter</Button>
+            {/* <Button variant={"outline"} disabled={true}>Filter</Button> */}
             <Button type="submit" disabled={!inputValue || isFetching}>
               {isFetching ? (
                 <div className="flex space-x-2 items-center">

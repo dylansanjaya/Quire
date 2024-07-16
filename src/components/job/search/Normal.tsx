@@ -31,7 +31,7 @@ export default function NormalSearch() {
             placeholder="Masukan kata kunci"
           />
           <div className="flex grid-cols-2 gap-4 justify-center">
-            <Button variant={"outline"} disabled={true}>Filter</Button>
+            {/* <Button variant={"outline"} disabled={true}>Filter</Button> */}
             <Button type="submit" disabled={!inputValue ? true : false}>
               Cari
             </Button>
