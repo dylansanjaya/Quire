@@ -57,7 +57,6 @@ export default function CVSearch() {
       setIsFetching(false);
     }
   };
-  console.log(predictions);
   return (
     <div className="space-y-4">
       <h2 className="font-bold text-xl">Pencarian Scan CV</h2>
