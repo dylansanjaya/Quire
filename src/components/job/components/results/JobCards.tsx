@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import JobDetails from "./JobDetails";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -11,6 +11,8 @@ export default function JobCards() {
   const [error, setError] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const params = useParams();
+  const searchParams = useSearchParams();
+  const slugQuery = searchParams.get("jobSlug");
 
   useEffect(() => {
     const getJobs = async () => {
@@ -81,7 +83,9 @@ export default function JobCards() {
               scroll={false}
             >
               <div
-                className={`bg-background shadow-xl rounded-xl w-full lg:w-96 my-4 hover:border hover:border-[#4945C4]`}
+                className={`bg-background shadow-xl rounded-xl w-full lg:w-96 my-4 hover:border hover:border-primary ${
+                  lowongan.url === slugQuery ? `border border-primary` : ``
+                }`}
               >
                 <div className="flex h-full p-4 justify-between">
                   <div className="Content grid space-y-2">
