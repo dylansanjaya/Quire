@@ -77,7 +77,9 @@ export default function StorySearch() {
           </div>
         </div>
       </form>
+      <div className="text-red-500">
       {error && <p>{error}</p>}
+      </div>
       <div className="mt-8">
         {isFetching ? (
           <div className="grid space-y-8 justify-items-center">
