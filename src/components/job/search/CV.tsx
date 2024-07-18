@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import PredictionsCV from "../predict/PredictCV";
+import AccuracyAlert from "@/components/ui/accuracy-alert";
 
 export default function CVSearch() {
   const [file, setFile] = useState<File | null>(null);
@@ -62,13 +63,16 @@ export default function CVSearch() {
       <h2 className="font-bold text-xl">Pencarian Scan CV</h2>
 
       <form onSubmit={getPredictions} className="grid gap-4">
-        <div className="sm:flex gap-4 space-y-4 sm:space-y-0">
-          <Input
-            className="self-center"
-            id="cv"
-            type="file"
-            onChange={handleFileChange}
-          />
+        <div className="sm:flex gap-4 space-y-4 sm:space-y-0 ">
+          <div className="flex items-center space-x-4 w-full">
+            <AccuracyAlert />
+            <Input
+              className="self-center"
+              id="cv"
+              type="file"
+              onChange={handleFileChange}
+            />
+          </div>
           <div className="flex grid-cols-2 gap-4 justify-center">
             {/* <Button variant={"outline"} disabled={true}>Filter</Button> */}
             <Button
@@ -78,18 +82,16 @@ export default function CVSearch() {
             >
               {isFetching ? (
                 <div className="flex space-x-2 items-center">
-                  <p>Memprediksi...</p>
+                  <p>Checking...</p>
                 </div>
               ) : (
-                `Prediksi`
+                `Check`
               )}
             </Button>
           </div>
         </div>
       </form>
-      <div className="text-red-500">
-      {error && <p>{error}</p>}
-      </div>
+      <div className="text-red-500">{error && <p>{error}</p>}</div>
       <div className="mt-8">
         {isFetching ? (
           <div className="grid space-y-8 justify-items-center">

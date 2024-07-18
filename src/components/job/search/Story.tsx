@@ -7,6 +7,7 @@ import { useState } from "react";
 import Predictions from "../predict/Predict";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Skeleton } from "@/components/ui/skeleton";
+import AccuracyAlert from "@/components/ui/accuracy-alert";
 
 export default function StorySearch() {
   const [inputValue, setInputValue] = useState("");
@@ -49,37 +50,37 @@ export default function StorySearch() {
     }
   };
 
-
   return (
     <div className="space-y-4">
       <form onSubmit={getPredictions} className="space-y-4">
         <h2 className="font-bold text-xl">Pencarian Story Tell</h2>
         <div className="md:flex gap-4 space-y-4 md:space-y-0">
-          <Input
-            value={inputValue}
-            minLength={10}
-            maxLength={1000}
-            onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Ceritakan pekerjaan impian mu"
-          />
+          <div className="flex items-center space-x-4 w-full">
+            <AccuracyAlert />
+            <Input
+              value={inputValue}
+              minLength={10}
+              maxLength={1000}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Ceritakan pekerjaan impian mu"
+            />
+          </div>
           <div className="flex grid-cols-2 gap-4 justify-center">
             {/* <Button variant={"outline"} disabled={true}>Filter</Button> */}
             <Button type="submit" disabled={!inputValue || isFetching}>
               {isFetching ? (
                 <div className="flex space-x-2 items-center">
                   <AiOutlineLoading3Quarters className="animate-spin" />
-                  <p>Memprediksi...</p>
+                  <p>Checking...</p>
                 </div>
               ) : (
-                `Prediksi`
+                `Check`
               )}
             </Button>
           </div>
         </div>
       </form>
-      <div className="text-red-500">
-      {error && <p>{error}</p>}
-      </div>
+      <div className="text-red-500">{error && <p>{error}</p>}</div>
       <div className="mt-8">
         {isFetching ? (
           <div className="grid space-y-8 justify-items-center">

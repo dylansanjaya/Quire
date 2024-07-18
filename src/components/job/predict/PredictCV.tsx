@@ -25,12 +25,6 @@ export default function PredictionsCV(prediction: any) {
   if (data.length === 0) {
     return (
       <div className="flex w-full justify-center">
-
-      <Alert variant={"default"} className="max-w-96">
-        <IoIosInformationCircleOutline className="text-2xl"/>
-        <AlertTitle>Perhatian!</AlertTitle>
-        <AlertDescription>Prediksi mungkin tidak akurat</AlertDescription>
-      </Alert>
       </div>
     );
   }
