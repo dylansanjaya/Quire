@@ -14,7 +14,7 @@ export default function AccuracyAlert() {
           <IoIosInformationCircleOutline className="text-2xl text-primary" />
         </TooltipTrigger>
         <TooltipContent>
-          <p>Quire AI mungkin akan memberikan prediksi yang kurang akurat.</p>
+          <p>Quire AI mungkin akan memberikan prediksi yang tidak 100% akurat.</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
