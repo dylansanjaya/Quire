@@ -6,7 +6,7 @@ import defImage from "P/assets/img/111.jpg"
 
 function CourseCard({ image_url, title, source, review_score, link_url }: any) {
   return (
-    <div className="bg-background rounded-xl shadow-xl w-96 aspect-[4/3]">
+    <div className="bg-background rounded-xl shadow-xl w-96 aspect-[4/3] snap-center">
       <div className="grid h-full grid-rows-5">
         <div className="relative row-span-3 bg-gray-200 rounded-t-xl">
           <Image
@@ -69,8 +69,7 @@ export default function CourseCards({ title }: any) {
   return (
     <div className="space-y-4 ">
       <h4 className="font-semibold">{title}</h4>
-      <div className="scroll">
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 w-full snap-mandatory snap-x bg-slate-700">
           {courses.map((course) => (
             <CourseCard
               key={course.id}
@@ -82,7 +81,6 @@ export default function CourseCards({ title }: any) {
             />
           ))}
         </div>
-      </div>
     </div>
   );
 }

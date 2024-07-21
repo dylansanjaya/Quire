@@ -1,5 +1,3 @@
-"use client";
-
 import SearchResults from "@/components/job/components/results/Results";
 import { Suspense } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
