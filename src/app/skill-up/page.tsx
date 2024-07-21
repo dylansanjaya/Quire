@@ -1,4 +1,4 @@
-import Searchbox2 from "@/components/skill-up/Search";
+import Searchbox2 from "@/components/skill-up/search/Search";
 import CourseCards from "@/components/skill-up/Courses";
 import WorkOnProgress from "@/components/ui/on-progress";
 
