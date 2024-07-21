@@ -18,7 +18,7 @@ export default function SearchBox() {
                 className="flex items-center space-x-2 text-[#4945C4]"
               >
                 <IoChevronBack />
-                <div>Kembali</div>
+                <div>Back</div>
               </Link>
               <TabsList>
                 <Link href={{
