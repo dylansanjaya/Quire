@@ -2,13 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import WorkOnProgress from "@/components/ui/on-progress";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import PredictionsCV from "../predict/PredictCV";
 import AccuracyAlert from "@/components/ui/accuracy-alert";
-import LoadingAnimation from "@/components/ui/loading-animation";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function CVSearch() {
   const [file, setFile] = useState<File | null>(null);
@@ -83,7 +82,7 @@ export default function CVSearch() {
             >
               {isFetching ? (
                 <div className="flex space-x-2 items-center">
-                  <LoadingAnimation />
+                  <AiOutlineLoading3Quarters className="animate-spin" />
                   <p>Checking...</p>
                 </div>
               ) : (
