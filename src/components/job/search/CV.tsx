@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import PredictionsCV from "../predict/PredictCV";
 import AccuracyAlert from "@/components/ui/accuracy-alert";
+import LoadingAnimation from "@/components/ui/loading-animation";
 
 export default function CVSearch() {
   const [file, setFile] = useState<File | null>(null);
@@ -82,6 +83,7 @@ export default function CVSearch() {
             >
               {isFetching ? (
                 <div className="flex space-x-2 items-center">
+                  <LoadingAnimation />
                   <p>Checking...</p>
                 </div>
               ) : (

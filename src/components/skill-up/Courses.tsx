@@ -69,7 +69,7 @@ export default function CourseCards({ title }: any) {
   return (
     <div className="space-y-4 ">
       <h4 className="font-semibold">{title}</h4>
-        <div className="flex space-x-4 w-full snap-mandatory snap-x bg-slate-700">
+        <div className="flex space-x-4 w-full snap-mandatory snap-x ">
           {courses.map((course) => (
             <CourseCard
               key={course.id}
