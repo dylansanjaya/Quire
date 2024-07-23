@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import PredictionsCV from "../predict/PredictCV";
 import AccuracyAlert from "@/components/ui/accuracy-alert";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import LoadingAnimation from "@/components/ui/loading-animation";
 
 export default function CVSearch() {
   const [file, setFile] = useState<File | null>(null);
@@ -94,17 +95,7 @@ export default function CVSearch() {
       </form>
       <div className="text-red-500">{error && <p>{error}</p>}</div>
       <div className="mt-8">
-        {isFetching ? (
-          <div className="grid space-y-8 justify-items-center">
-            <Skeleton className="rounded-xl shadow-xl p-8 w-full max-w-[70vw] h-60" />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full max-w-[70vw]">
-              <Skeleton className="rounded-xl shadow-xl p-8 w-full max-w-[70vw] h-60" />
-              <Skeleton className="rounded-xl shadow-xl p-8 w-full max-w-[70vw] h-60" />
-            </div>
-          </div>
-        ) : (
-          <PredictionsCV prediction={predictions} />
-        )}
+        <PredictionsCV prediction={predictions} />
       </div>
     </div>
   );

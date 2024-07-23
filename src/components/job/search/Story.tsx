@@ -8,6 +8,8 @@ import Predictions from "../predict/Predict";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Skeleton } from "@/components/ui/skeleton";
 import AccuracyAlert from "@/components/ui/accuracy-alert";
+import { SmallButton } from "@/components/ui/small_button";
+import LoadingAnimation from "@/components/ui/loading-animation";
 
 export default function StorySearch() {
   const [inputValue, setInputValue] = useState("");
@@ -82,17 +84,7 @@ export default function StorySearch() {
       </form>
       <div className="text-red-500">{error && <p>{error}</p>}</div>
       <div className="mt-8">
-        {isFetching ? (
-          <div className="grid space-y-8 justify-items-center">
-            <Skeleton className="rounded-xl shadow-xl p-8 w-full max-w-[70vw] h-60" />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full max-w-[70vw]">
-              <Skeleton className="rounded-xl shadow-xl p-8 w-full max-w-[70vw] h-60" />
-              <Skeleton className="rounded-xl shadow-xl p-8 w-full max-w-[70vw] h-60" />
-            </div>
-          </div>
-        ) : (
-          <Predictions prediction={predictions} />
-        )}
+        <Predictions prediction={predictions} />
       </div>
     </div>
   );

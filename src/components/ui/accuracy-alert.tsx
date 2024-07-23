@@ -8,13 +8,14 @@ import { IoIosInformationCircleOutline } from "react-icons/io";
 
 export default function AccuracyAlert() {
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={100} >
       <Tooltip>
-        <TooltipTrigger type="reset">
+        <TooltipTrigger type={"button"}>
           <IoIosInformationCircleOutline className="text-2xl text-primary" />
         </TooltipTrigger>
         <TooltipContent>
-          <p>Quire AI mungkin akan memberikan prediksi yang tidak 100% akurat.</p>
+          <p>Quire AI memiliki kemungkinan untuk memberikan</p>
+          <p> prediksi yang tidak 100% akurat.</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
