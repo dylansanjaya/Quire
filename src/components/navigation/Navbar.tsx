@@ -63,7 +63,7 @@ export default function Navbar() {
               </div>
               <div className="Navigation">
                 {links.map((link, index) => {
-                  const isActive = pathname.endsWith(link.href);
+                  let isActive = pathname.endsWith(link.href);
                   return (
                     <Link
                       href={link.href}
@@ -77,7 +77,8 @@ export default function Navbar() {
                   );
                 })}
                 <Link href="/login">
-                  <Button variant={"secondary"}
+                  <Button
+                    variant={"secondary"}
                     className={`text-foreground ${
                       isActives ? "font-black text-primary" : "font-bold"
                     }`}
@@ -90,15 +91,15 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <div className="flex rounded-xl bg-[#4945C4] h-20  w-[96%] z-50 fixed bottom-[2%] mx-[2%] shadow-2xl md:hidden">
-        <div className="Menus flex p-8 items-center w-full justify-around text-3xl text-background">
+      <div className="flex bg-background h-[10vh]  w-[100vw] z-50 fixed bottom-[0%] md:hidden shadow-2xl">
+        <div className="Menus flex p-2 items-center w-full justify-around text-3xl text-background">
           {links2.map((link, index) => {
-            const isActive = pathname.endsWith(link.href);
+            let isActive = pathname.endsWith(link.href);
             return (
               <Link
-                href={link.href}
+                href={`${link.href}`}
                 key={index}
-                className={`${isActive ? "text-4xl" : ""}`}
+                className={`text-primary ${isActive ? " text-4xl" : ""}`}
               >
                 {link.icon}
               </Link>
