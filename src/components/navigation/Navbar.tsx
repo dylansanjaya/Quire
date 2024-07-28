@@ -99,7 +99,7 @@ export default function Navbar() {
               <Link
                 href={`${link.href}`}
                 key={index}
-                className={`text-primary ${isActive ? " text-4xl" : ""}`}
+                className={` ${isActive ? "text-primary text-4xl" : "text-gray-300"}`}
               >
                 {link.icon}
               </Link>
