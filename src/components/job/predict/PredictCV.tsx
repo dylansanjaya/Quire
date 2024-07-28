@@ -3,6 +3,13 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { SmallButton } from "@/components/ui/small_button";
 
 export default function PredictionsCV(prediction: any) {
   const data = prediction.prediction;
@@ -30,6 +37,9 @@ export default function PredictionsCV(prediction: any) {
   }
 
   return (
+    <Accordion type="single" collapsible>
+    <AccordionItem value="item-1">
+      <AccordionContent>
     <div className="grid space-y-8 justify-items-center">
       <div className="bg-background rounded-xl shadow-xl p-8 w-full max-w-[70vw]">
         <div className="grid w-full justify-items-center space-y-4 text-center text-pretty">
@@ -76,5 +86,14 @@ export default function PredictionsCV(prediction: any) {
         ))}
       </div>
     </div>
+    </AccordionContent>
+        <SmallButton
+          asChild
+          className="bg-background hover:bg-background text-primary rounded-none mr-4"
+        >
+          <AccordionTrigger>Results</AccordionTrigger>
+        </SmallButton>
+      </AccordionItem>
+    </Accordion>
   );
 }

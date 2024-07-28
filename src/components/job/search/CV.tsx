@@ -38,7 +38,7 @@ export default function CVSearch() {
       formData.append("file", file);
 
       const res = await fetch(
-        `https://qure-recommender-cv-6mcqyfdvaa-et.a.run.app/predict`,
+        `https://arpqucopjvfwjtq-evfpthsuvq-et.a.run.app/predict`,
         {
           method: "POST",
           body: formData,

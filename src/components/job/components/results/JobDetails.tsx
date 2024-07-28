@@ -55,7 +55,7 @@ async function getJobDetails(
 
   try {
     const res = await fetch(
-      "https://quire-backend-6mcqyfdvaa-et.a.run.app/api/job/detail",
+      "https://nrlxquzixraaagz-evfpthsuvq-et.a.run.app/api/job/detail",
       {
         method: "POST",
         headers: {

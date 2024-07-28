@@ -26,7 +26,7 @@ export default function StorySearch() {
 
     try {
       const res = await fetch(
-        `https://quire-job-recommender-6mcqyfdvaa-et.a.run.app/predict/`,
+        `https://ivcobvvrnejydxq-evfpthsuvq-et.a.run.app/predict/`,
         {
           method: "POST",
           headers: {

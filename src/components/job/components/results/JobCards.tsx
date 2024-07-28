@@ -22,7 +22,7 @@ export default function JobCards() {
       setJobs([]);
       try {
         const res = await fetch(
-          `https://quire-backend-6mcqyfdvaa-et.a.run.app/api/job`,
+          `https://nrlxquzixraaagz-evfpthsuvq-et.a.run.app/api/job`,
           {
             method: "POST",
             headers: {
@@ -69,12 +69,16 @@ export default function JobCards() {
     );
   }
 
+  function replacePrecent(str: any) {
+    return str.replace("%20", " ");
+  }
+
   return (
     <div className="lg:flex w-full justify-center gap-4">
       <div className="lowongan space-y-4">
         <div className="lowongan-cards bg-gray-200 overflow-y-auto h-[35vh] lg:h-[70vh] px-4">
           <div className="lowongan-count mt-4">
-            <p className="text-sm">{lowongan.length} Lowongan</p>
+            <p className="text-sm">{lowongan.length} Lowongan {replacePrecent(params.search)}</p>
           </div>
           {lowongan.map((lowongan: any) => (
             <Link
