@@ -9,6 +9,9 @@ import { RiSearchFill } from "react-icons/ri";
 import { FaBookOpen } from "react-icons/fa";
 
 import { IoPerson } from "react-icons/io5";
+import { IoIosMenu } from "react-icons/io";
+
+
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -35,7 +38,7 @@ export default function Navbar() {
       icon: <GoHomeFill />,
     },
     {
-      title: "Cari Lowongan",
+      title: "Lowongan",
       href: "/jobs",
       icon: <RiSearchFill />,
     },
@@ -91,20 +94,36 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <div className="flex bg-background h-[10vh]  w-[100vw] z-50 fixed bottom-[0%] md:hidden shadow-2xl">
-        <div className="Menus flex p-2 items-center w-full justify-around text-3xl text-background">
-          {links2.map((link, index) => {
-            let isActive = pathname.endsWith(link.href);
-            return (
-              <Link
-                href={`${link.href}`}
-                key={index}
-                className={` ${isActive ? "text-primary text-4xl" : "text-gray-300"}`}
-              >
-                {link.icon}
-              </Link>
-            );
-          })}
+      <div>
+        <div className="flex bg-background h-[7vh] w-[100vw] z-50 fixed top-[0%] md:hidden p-4 px-6">
+          <div className="flex justify-between items-center w-full">
+            <h1 className="Logo font-bold text-2xl text-primary">Quire</h1>
+            {/* <IoIosMenu className="text-3xl text-primary"/> */}
+          </div>
+        </div>
+        <div
+          className="flex bg-background h-[10vh] w-[100vw] z-50 fixed bottom-[0%] md:hidden"
+          style={{
+            boxShadow:
+              "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)",
+          }}
+        >
+          <div className="Menus flex p-2 items-center w-full justify-around text-3xl text-background">
+            {links2.map((link, index) => {
+              let isActive = pathname.endsWith(link.href);
+              return (
+                <div
+                  key={index}
+                  className={`grid justify-items-center ${
+                    isActive ? "text-primary text-4xl" : "text-gray-300"
+                  }`}
+                >
+                  <Link href={`${link.href}`}>{link.icon}</Link>
+                  <p className="text-xs">{link.title}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>
